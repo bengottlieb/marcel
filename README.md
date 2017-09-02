@@ -1,2 +1,2 @@
-# CrossPlatformKit
-Easier code sharing between Mac and iOS
+# Marcel
+Parse MIME-encoded messages on iOS and Mac
