@@ -154,17 +154,26 @@ extension Data {
 			let hasCRLF = self.contains(string: "\r\n")
 
 			while i < length {
-				if ptr[i] == sentinel, (i == 0 || (ptr[i - 1] != sentinel && ptr[i - 1] != question)) {
+				if ptr[i] == sentinel, (i == 0 || ptr[i - 1] != sentinel) {
 					if i < (length + 2) {
 						if let escaped = UInt8(asciiChar: ptr[i + 1], and: ptr[i + 2]) {
 							output[count] = escaped
 							count += 1
 							i += 2
 						} else if (ptr[i + 1] == cr || ptr[i + 1] == newline) {
+							var trimAmount = 0
 							if !hasCRLF, ptr[i + 2] != ptr[i + 1] {
-								i += 1
+								trimAmount = 1
 							} else if hasCRLF, ptr[i + 3] != ptr[i + 1] {
-								i += 2
+								trimAmount = 2
+							}
+							
+							if trimAmount > 0 {
+								if ptr[i - 1] == question {
+									output[count] = sentinel
+									count += 1
+								}
+								i += trimAmount
 							} else {
 								output[count] = ptr[i]
 								count += 1
