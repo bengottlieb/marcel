@@ -10,6 +10,8 @@ import Foundation
 
 public class MIMEMessage {
 	public var raw: Data
+	public var subject: String? { return self[.subject] }
+	
 	var data: Data
 	var string: String
 	var mainPart: Part!

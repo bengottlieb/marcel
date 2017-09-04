@@ -48,6 +48,8 @@
 		B593113B1F58B92E0056D353 /* Data+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59311391F58B92E0056D353 /* Data+Mime.swift */; };
 		B5A482511AE5DCCC001636BE /* Marcel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504E6461A8968DC001B414B /* Marcel.framework */; };
 		B5A482591AE5DE6A001636BE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A482581AE5DE6A001636BE /* CoreAudio.framework */; };
+		B5E0D43A1F5DA00300E1077C /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E0D4391F5DA00300E1077C /* String+Mime.swift */; };
+		B5E0D43B1F5DA00300E1077C /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E0D4391F5DA00300E1077C /* String+Mime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,7 @@
 		B59311311F58A5CB0056D353 /* MimeDetailsWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MimeDetailsWindowController.xib; sourceTree = "<group>"; };
 		B59311391F58B92E0056D353 /* Data+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Mime.swift"; sourceTree = "<group>"; };
 		B5A482581AE5DE6A001636BE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		B5E0D4391F5DA00300E1077C /* String+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Mime.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +237,7 @@
 				B555235F1F596705005D026B /* Header.swift */,
 				B55523591F596576005D026B /* UInt8+Mime.swift */,
 				B59311391F58B92E0056D353 /* Data+Mime.swift */,
+				B5E0D4391F5DA00300E1077C /* String+Mime.swift */,
 			);
 			name = "Framework Code";
 			path = "Marcel/Framework Code";
@@ -493,6 +497,7 @@
 			files = (
 				B55523571F596422005D026B /* Part.swift in Sources */,
 				B55523601F596705005D026B /* Header.swift in Sources */,
+				B5E0D43A1F5DA00300E1077C /* String+Mime.swift in Sources */,
 				B593111C1F58A0CD0056D353 /* MIMEMessage.swift in Sources */,
 				B555235A1F596576005D026B /* UInt8+Mime.swift in Sources */,
 				B593113A1F58B92E0056D353 /* Data+Mime.swift in Sources */,
@@ -505,6 +510,7 @@
 			files = (
 				B55523581F596422005D026B /* Part.swift in Sources */,
 				B55523611F596705005D026B /* Header.swift in Sources */,
+				B5E0D43B1F5DA00300E1077C /* String+Mime.swift in Sources */,
 				B593111D1F58A0CD0056D353 /* MIMEMessage.swift in Sources */,
 				B555235B1F596576005D026B /* UInt8+Mime.swift in Sources */,
 				B593113B1F58B92E0056D353 /* Data+Mime.swift in Sources */,

@@ -148,12 +148,13 @@ extension Data {
 			let length = self.count
 			let output = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
 			let sentinel = UInt8(firstCharacterOf: "=")
+			let question = UInt8(firstCharacterOf: "?")
 			let newline = UInt8(firstCharacterOf: "\r")
 			let cr = UInt8(firstCharacterOf: "\n")
 			let hasCRLF = self.contains(string: "\r\n")
 
 			while i < length {
-				if ptr[i] == sentinel, (i == 0 || ptr[i - 1] != sentinel) {
+				if ptr[i] == sentinel, (i == 0 || (ptr[i - 1] != sentinel && ptr[i - 1] != question)) {
 					if i < (length + 2) {
 						if let escaped = UInt8(asciiChar: ptr[i + 1], and: ptr[i + 2]) {
 							output[count] = escaped

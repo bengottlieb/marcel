@@ -32,6 +32,8 @@ class MimeDetailsWindowController: NSWindowController {
 		self.window?.contentView?.addSubview(self.webView)
 		self.webView.autoresizingMask = [.width, .height]
 		
+		self.window?.title = self.parser.subject ?? "Untitled"
+		
 		let html = self.parser.htmlBody ?? "<html><body>NONE FOUND</body></html>"
 		self.webView.mainFrame.loadHTMLString(html, baseURL: nil)
 		

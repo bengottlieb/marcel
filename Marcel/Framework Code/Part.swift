@@ -17,7 +17,7 @@ extension MIMEMessage {
 		let subParts: [Part]
 		
 		public subscript(_ header: MIMEMessage.Part.Header.Kind) -> String? {
-			return self.headers[header]?.body
+			return self.headers[header]?.cleanedBody
 		}
 
 		public var bodyString: String {

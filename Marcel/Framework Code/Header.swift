@@ -29,6 +29,8 @@ extension MIMEMessage.Part {
 		let kind: Kind?
 		let body: String
 		
+		var cleanedBody: String { return self.body.decodedFromUTF8Wrapping }
+		
 		init(_ string: String) {
 			let components = string.components(separatedBy: ":")
 			self.name = components.first ?? ""
