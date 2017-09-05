@@ -14,10 +14,12 @@ extension Data {
 		var ranges: [Range<Data.Index>]
 		var count: Int { return self.ranges.count }
 		
+		static let empty = Components(data: Data(), ranges: [])
+		
 		subscript(_ index: Int) -> String {
 			let range = self.ranges[index]
 			let subset = self.data[range]
-			return String(data: subset, encoding: .ascii) ?? String(data: subset, encoding: .utf8) ?? ""
+			return String(data: subset, encoding: .utf8) ?? String(data: subset, encoding: .ascii) ?? ""
 		}
 		
 		func index(of string: String) -> Int? {
@@ -172,6 +174,7 @@ extension Data {
 								if ptr[i - 1] == question {
 									output[count] = sentinel
 									count += 1
+									trimAmount -= 1
 								}
 								i += trimAmount
 							} else {

@@ -29,7 +29,7 @@ public class MIMEMessage {
 	enum BoundaryType: String { case alternative, related }
 	
 	public init?(data: Data) {
-		guard let string = String(data: data, encoding: .ascii) ?? String(data: data, encoding: .utf8) else {
+		guard let string = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .ascii) else {
 			self.data = Data()
 			self.string = ""
 			
@@ -59,8 +59,14 @@ public class MIMEMessage {
 	}
 	
 	func setup() -> Bool {
-		guard let components = self.data.components(separatedBy: "\r\n") ?? self.data.components(separatedBy: "\n") ?? self.data.components(separatedBy: "\r") else { return false }
+		var components = self.data.components(separatedBy: "\r\n") ?? Data.Components.empty
+		let crComponents = self.data.components(separatedBy: "\r") ?? Data.Components.empty
+		let lfComponents = self.data.components(separatedBy: "\n") ?? Data.Components.empty
 		
+		if crComponents.count > components.count { components = crComponents }
+		if lfComponents.count > components.count { components = lfComponents }
+
+		if components.count == 0 { return false }
 		self.mainPart = Part(components: components)
 
 		return true
