@@ -37,7 +37,7 @@ public class MIMEMessage {
 		}
 		
 		self.raw = data
-		self.data = data.convertFromQuotedPrintable().unwrapFoldedHeadersAndStripOutCarriageReturns()
+		self.data = data.convertFromMangledUTF8()
 		self.string = string
 		if !self.setup() { return nil }
 	}
@@ -51,7 +51,7 @@ public class MIMEMessage {
 			return nil
 		}
 		self.string = string
-		self.data = data.convertFromQuotedPrintable().unwrapFoldedHeadersAndStripOutCarriageReturns()
+		self.data = data.convertFromMangledUTF8()
 		self.raw = self.data
 		if !self.setup() { return nil }
 	}

@@ -20,7 +20,7 @@ extension String {
 		while let range = result.range(of: utf, options: .caseInsensitive), let endRange = result.range(of: utfEnd), range.upperBound < endRange.lowerBound {
 			let innerRange = range.upperBound..<endRange.lowerBound
 			let innerChunk = String(result[innerRange]) ?? ""
-			result = result.replacingCharacters(in: range.lowerBound..<endRange.upperBound, with: innerChunk.convertedFromEmailHeaderField)
+			result = result.replacingCharacters(in: range.lowerBound..<self.index(before: endRange.upperBound), with: innerChunk.convertedFromEmailHeaderField)
 		}
 		return result.trimmingCharacters(in: .whitespacesAndNewlines)
 	}

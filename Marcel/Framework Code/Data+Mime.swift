@@ -116,6 +116,23 @@ extension Data {
 		}
 	}
 	
+	var usesCRLF: Bool {
+		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
+			let length = self.count
+			let cr = UInt8(firstCharacterOf: "\r")
+			let newline = UInt8(firstCharacterOf: "\n")
+			
+			for i in 0..<(length - 1) {
+				if ptr[i] == cr {
+					return ptr[i + 1] == newline
+				} else if ptr[i] == newline {
+					return false
+				}
+			}
+			return false
+		}
+	}
+	
 	func unwrapFoldedHeadersAndStripOutCarriageReturns() -> Data {
 		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
 			let length = self.count
@@ -127,11 +144,8 @@ extension Data {
 			let newline = UInt8(firstCharacterOf: "\n")
 			
 			while i < length {
-				if ptr[i] == cr {
-					if i == length - 1 { break }
-					if ptr[i + 1] != newline { output[count] = newline }
-				} else if ptr[i] == newline, (ptr[i + 1] == space || ptr[i + 1] == tab) {
-					i += 1
+				if ptr[i] == newline, (ptr[i + 1] == space || ptr[i + 1] == tab) {
+					i += 2
 				} else {
 					output[count] = ptr[i]
 					count += 1
@@ -143,7 +157,7 @@ extension Data {
 		}
 	}
 	
-	func convertFromQuotedPrintable() -> Data {
+	func convertFromMangledUTF8() -> Data {
 		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
 			var count = 0, i = 0
 			let length = self.count
@@ -152,54 +166,49 @@ extension Data {
 			let question = UInt8(firstCharacterOf: "?")
 			let newline = UInt8(firstCharacterOf: "\r")
 			let cr = UInt8(firstCharacterOf: "\n")
-			let hasCRLF = self.contains(string: "\r\n")
+			let space = UInt8(firstCharacterOf: " ")
+			let tab = UInt8(firstCharacterOf: "\t")
+			let hasCRLF = self.usesCRLF
+			var lastWasSentinel = false
 
 			while i < length {
-				if ptr[i] == sentinel, (i == 0 || ptr[i - 1] != sentinel) {
-					if i < (length + 2) {
-						if let escaped = UInt8(asciiChar: ptr[i + 1], and: ptr[i + 2]) {
-							output[count] = escaped
-							count += 1
-							i += 2
-						} else if (ptr[i + 1] == cr || ptr[i + 1] == newline) {
-							var trimAmount = 0
-							if !hasCRLF, ptr[i + 2] != ptr[i + 1] {
-								trimAmount = 1
-							} else if hasCRLF, ptr[i + 3] != ptr[i + 1] {
-								trimAmount = 2
-							}
-							
-							if trimAmount > 0 {
-								if ptr[i - 1] == question {
-									output[count] = sentinel
-									count += 1
-									trimAmount -= 1
-								}
-								i += trimAmount
-							} else {
-								output[count] = ptr[i]
-								count += 1
-							}
-						} else {
-							output[count] = ptr[i]
-							count += 1
-						}
-					} else if i < (length + 1) {
-						if (ptr[i + 1] == cr || ptr[i + 1] == newline) {
-							i += 1;
-						} else {
-							output[count] = ptr[i]
-							count += 1
-						}
-					} else {
+				var pointingToNewline = ptr[i] == newline
+				
+				if ptr[i] == cr {				//if it's a newline, check for CRLF and either remove the CR or replace it with an LF
+					if i == length - 1 { break }
+					output[count] = newline
+					pointingToNewline = true
+					if ptr[i + 1] == newline { i += 1 }
+				}
+				
+				if ptr[i] == sentinel {					//currently at an = character
+					if lastWasSentinel {
+						lastWasSentinel = false
 						output[count] = ptr[i]
 						count += 1
+						i += 1
+						continue
+					} else {
+						lastWasSentinel = true
 					}
-				} else {
-					output[count] = ptr[i]
-					count += 1
+				} else if lastWasSentinel {				//last character was an =
+					lastWasSentinel = false
+					if pointingToNewline, i < (length - 1) {					//newline. Might be a hard wrap
+						if ptr[i + 1] == space || ptr[i + 1] == tab {				//hard wrap. Remove the newline and the space
+							count -= 1
+							i += 2
+							continue
+						}
+					} else if let escaped = UInt8(asciiChar: ptr[i], and: ptr[i + 1]) {
+						output[count - 1] = escaped
+						i += 2
+						continue
+					}
 				}
+				
+				output[count] = ptr[i]
 				i += 1
+				count += 1
 			}
 			
 			return Data(bytes: output, count: count)
