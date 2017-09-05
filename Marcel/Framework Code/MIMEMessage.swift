@@ -37,13 +37,11 @@ public class MIMEMessage {
 		}
 		
 		self.raw = data
-		self.data = data.convertFromQuotedPrintable().unwrapFoldedHeaders()
+		self.data = data.convertFromQuotedPrintable().unwrapFoldedHeadersAndStripOutCarriageReturns()
 		self.string = string
 		if !self.setup() { return nil }
 	}
-	
-	var fieldSeparator = "\r\n"
-	
+		
 	public init?(string: String) {
 		guard let data = string.data(using: .utf8) else {
 			self.data = Data()
@@ -53,13 +51,13 @@ public class MIMEMessage {
 			return nil
 		}
 		self.string = string
-		self.data = data.convertFromQuotedPrintable().unwrapFoldedHeaders()
+		self.data = data.convertFromQuotedPrintable().unwrapFoldedHeadersAndStripOutCarriageReturns()
 		self.raw = self.data
 		if !self.setup() { return nil }
 	}
 	
 	func setup() -> Bool {
-		if let components = self.data.mimeSeparatedComponents {
+		if let components = self.data.components(separatedBy: "\n") {
 			self.mainPart = Part(components: components)
 			
 			return true

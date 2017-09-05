@@ -79,13 +79,6 @@ extension Data {
 		}
 	}
 	
-	var mimeSeparatedComponents: Components? {
-		for lineBreak in ["\r\n", "\n", "r"] {
-			if self.contains(string: lineBreak), let components = self.components(separatedBy: lineBreak), components.index(of: "") != nil { return components }
-		}
-		return nil
-	}
-	
 	func components(separatedBy separator: String) -> Components? {
 		var ranges: [Range<Data.Index>] = []
 		var i = 0
@@ -123,9 +116,7 @@ extension Data {
 		}
 	}
 	
-	func unwrapFoldedHeaders() -> Data {
-		let hasCRLF = self.contains(string: "\r\n")
-		
+	func unwrapFoldedHeadersAndStripOutCarriageReturns() -> Data {
 		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
 			let length = self.count
 			let output = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
@@ -136,9 +127,10 @@ extension Data {
 			let newline = UInt8(firstCharacterOf: "\n")
 			
 			while i < length {
-				if hasCRLF, ptr[i] == cr, i < (length - 2), ptr[i + 1] == newline, (ptr[i + 2] == space || ptr[i + 2] == tab) {
-					i += 2
-				} else if !hasCRLF, (ptr[i] == newline || ptr[i] == cr), i < (length - 1), (ptr[i + 1] == space || ptr[i + 1] == tab) {
+				if ptr[i] == cr {
+					if i == length - 1 { break }
+					if ptr[i + 1] != newline { output[count] = newline }
+				} else if ptr[i] == newline, (ptr[i + 1] == space || ptr[i + 1] == tab) {
 					i += 1
 				} else {
 					output[count] = ptr[i]
