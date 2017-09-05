@@ -59,16 +59,11 @@ public class MIMEMessage {
 	}
 	
 	func setup() -> Bool {
-		var components = self.data.components(separatedBy: "\r\n") ?? Data.Components.empty
-		let crComponents = self.data.components(separatedBy: "\r") ?? Data.Components.empty
-		let lfComponents = self.data.components(separatedBy: "\n") ?? Data.Components.empty
-		
-		if crComponents.count > components.count { components = crComponents }
-		if lfComponents.count > components.count { components = lfComponents }
-
-		if components.count == 0 { return false }
-		self.mainPart = Part(components: components)
-
-		return true
+		if let components = self.data.mimeSeparatedComponents {
+			self.mainPart = Part(components: components)
+			
+			return true
+		}
+		return false
 	}
 }

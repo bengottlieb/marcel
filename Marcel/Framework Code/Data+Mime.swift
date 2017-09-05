@@ -79,6 +79,13 @@ extension Data {
 		}
 	}
 	
+	var mimeSeparatedComponents: Components? {
+		for lineBreak in ["\r\n", "\n", "r"] {
+			if self.contains(string: lineBreak), let components = self.components(separatedBy: lineBreak), components.index(of: "") != nil { return components }
+		}
+		return nil
+	}
+	
 	func components(separatedBy separator: String) -> Components? {
 		var ranges: [Range<Data.Index>] = []
 		var i = 0
