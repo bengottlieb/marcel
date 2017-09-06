@@ -43,11 +43,7 @@ class StringConversionTests: XCTestCase {
 	
 	func testLineBreakStringConversion() {
 
-		let starter = """
-	Codable articles are all over the place lately=2C but this one talks about=
-	 handling dates a dateEncodingStrategy that can handle many=2C many format=
-	s. =F0=9F=8E=89
-	"""
+		let starter = "Codable articles are all over the place lately=2C but this one talks about=\r\n handling dates a dateEncodingStrategy that can handle many=2C many format=\r\ns. =F0=9F=8E=89"
 		let data = starter.data(using: .ascii)!
 		let converted = data.convertFromMangledUTF8()
 		let check = "Codable articles are all over the place lately, but this one talks about handling dates a dateEncodingStrategy that can handle many, many formats. 🎉"

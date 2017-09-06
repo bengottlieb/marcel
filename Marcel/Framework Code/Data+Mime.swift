@@ -176,9 +176,16 @@ extension Data {
 				
 				if ptr[i] == cr {				//if it's a newline, check for CRLF and either remove the CR or replace it with an LF
 					if i == length - 1 { break }
-					pointingToNewline = true
 					if ptr[i + 1] == newline { i += 1 }
-					isCarriageReturn = true
+					if lastWasSentinel {
+						lastWasSentinel = false
+						count -= 1
+						i += 1
+						continue
+					} else {
+						pointingToNewline = true
+						isCarriageReturn = true
+					}
 				}
 				
 				if ptr[i] == sentinel, i > 0, ptr[i - 1] != questionMark {					//currently at an = character
