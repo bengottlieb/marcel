@@ -9,7 +9,7 @@ X-Spam-score: 0.0
 X-Spam-hits: BAYES_00 -1.9, HTML_FONT_LOW_CONTRAST 0.001, HTML_MESSAGE 0.001,
   RCVD_IN_SORBS_SPAM 0.5, SPF_HELO_PASS -0.001, SPF_SOFTFAIL 0.665,
   LANGUAGES en, BAYES_USED global, SA_VERSION 3.4.0
-X-Spam-source: IP='45.79.187.215', Host='redacted.com', Country='US', FromHeader='com',
+X-Spam-source: IP='192.168.1.200', Host='redacted.com', Country='US', FromHeader='com',
   MailFrom='com'
 X-Spam-charsets: subject='utf-8', plain='utf-8', html='utf-8'
 X-Resolved-to: redacted@redacted.net
@@ -27,7 +27,7 @@ Received: from mx1.messagingengine.com (localhost [127.0.0.1])
 Authentication-Results: mx1.messagingengine.com;
     dkim=pass (1024-bit rsa key sha1) header.d=quora.com header.i=@quora.com header.b=cxVvMenB;
     dmarc=pass header.from=quora.com;
-    iprev=pass policy.iprev=45.79.187.215 (redacted.com);
+    iprev=pass policy.iprev=192.168.1.200 (redacted.com);
     spf=softfail smtp.mailfrom=bounces+4806-24b2-name=redacted.com@email.quora.com smtp.helo=redacted.com;
     x-ptr=pass x-ptr-helo=redacted.com x-ptr-lookup=redacted.com
 Received-SPF: softfail
@@ -36,8 +36,8 @@ Received-SPF: softfail
     identity=mailfrom;
     envelope-from="bounces+4806-24b2-name=redacted.com@email.quora.com";
     helo=redacted.com;
-    client-ip=45.79.187.215
-Received: from redacted.com (redacted.com [45.79.187.215])
+    client-ip=192.168.1.200
+Received: from redacted.com (redacted.com [192.168.1.200])
 	by mx1.messagingengine.com (Postfix) with ESMTP
 	for <redacted@redacted.net>; Tue,  5 Sep 2017 08:49:39 -0400 (EDT)
 Received: by redacted.com (Postfix)

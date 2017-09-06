@@ -163,25 +163,25 @@ extension Data {
 			let length = self.count
 			let output = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
 			let sentinel = UInt8(firstCharacterOf: "=")
-			let question = UInt8(firstCharacterOf: "?")
-			let newline = UInt8(firstCharacterOf: "\r")
-			let cr = UInt8(firstCharacterOf: "\n")
+			let newline = UInt8(firstCharacterOf: "\n")
+			let questionMark = UInt8(firstCharacterOf: "?")
+			let cr = UInt8(firstCharacterOf: "\r")
 			let space = UInt8(firstCharacterOf: " ")
 			let tab = UInt8(firstCharacterOf: "\t")
-			let hasCRLF = self.usesCRLF
 			var lastWasSentinel = false
 
 			while i < length {
 				var pointingToNewline = ptr[i] == newline
+				var isCarriageReturn = false
 				
 				if ptr[i] == cr {				//if it's a newline, check for CRLF and either remove the CR or replace it with an LF
 					if i == length - 1 { break }
-					output[count] = newline
 					pointingToNewline = true
 					if ptr[i + 1] == newline { i += 1 }
+					isCarriageReturn = true
 				}
 				
-				if ptr[i] == sentinel {					//currently at an = character
+				if ptr[i] == sentinel, i > 0, ptr[i - 1] != questionMark {					//currently at an = character
 					if lastWasSentinel {
 						lastWasSentinel = false
 						output[count] = ptr[i]
@@ -195,7 +195,12 @@ extension Data {
 					lastWasSentinel = false
 					if pointingToNewline, i < (length - 1) {					//newline. Might be a hard wrap
 						if ptr[i + 1] == space || ptr[i + 1] == tab {				//hard wrap. Remove the newline and the space
-							i += 2
+							count -= 1
+							i += 1
+							continue
+						} else if i > 1, ptr[i - 2] != sentinel {
+							count -= 1
+							i += 1
 							continue
 						}
 					} else if let escaped = UInt8(asciiChar: ptr[i], and: ptr[i + 1]) {
@@ -203,11 +208,18 @@ extension Data {
 						i += 2
 						continue
 					}
+				} else if pointingToNewline, i < (length - 1), (ptr[i + 1] == space || ptr[i + 1] == tab) {
+					i += 2
+					continue
 				}
 				
-				output[count] = ptr[i]
-				i += 1
+				if !isCarriageReturn {
+					output[count] = ptr[i]
+				} else {
+					output[count] = newline
+				}
 				count += 1
+				i += 1
 			}
 			
 			return Data(bytes: output, count: count)

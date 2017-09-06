@@ -29,8 +29,33 @@ class StringConversionTests: XCTestCase {
 		let checkSubject = "What do you think about Barack Obama's departing letter to Donald Trump? - Quora"
 		XCTAssertEqual(subject, checkSubject, "Failed to properly extract email title")
 		XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
-
 	}
+	
+	func testLineBreakDataConversion() {
+		let url = Bundle(for: StringConversionTests.self).url(forResource: "equal-sign-encoding", withExtension: "eml")!
+		let data = try! Data(contentsOf: url)
+		let parser = MIMEMessage(data: data)
+		let subject = parser!.subject
+		let checkSubject = "Concurrency in Swift / State / WTF Auto Layout?"
+		XCTAssertEqual(subject, checkSubject, "Failed to properly extract email title")
+		XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
+	}
+	
+	func testLineBreakStringConversion() {
+
+		let starter = """
+	Codable articles are all over the place lately=2C but this one talks about=
+	 handling dates a dateEncodingStrategy that can handle many=2C many format=
+	s. =F0=9F=8E=89
+	"""
+		let data = starter.data(using: .ascii)!
+		let converted = data.convertFromMangledUTF8()
+		let check = "Codable articles are all over the place lately, but this one talks about handling dates a dateEncodingStrategy that can handle many, many formats. 🎉"
+		
+		let result = String(data: converted, encoding: .utf8)!
+		XCTAssertEqual(result, check, "Failed to properly convert initial string")
+	}
+
 	
     func testSimpleStringConversion() {
 		let starter = """
