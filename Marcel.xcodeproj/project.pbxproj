@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		B53173C11F5F4CCE00F9C5AB /* MarcelUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53173C01F5F4CCE00F9C5AB /* MarcelUnitTests.swift */; };
+		B53173C31F5F4CCE00F9C5AB /* Marcel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Marcel.framework */; };
+		B53173C91F5F4CDA00F9C5AB /* StringConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */; };
 		B55523531F5963A7005D026B /* Marcel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Marcel.framework */; };
 		B55523551F5963C1005D026B /* Marcel.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Marcel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B55523571F596422005D026B /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55523561F596422005D026B /* Part.swift */; };
@@ -48,11 +51,19 @@
 		B593113B1F58B92E0056D353 /* Data+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59311391F58B92E0056D353 /* Data+Mime.swift */; };
 		B5A482511AE5DCCC001636BE /* Marcel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504E6461A8968DC001B414B /* Marcel.framework */; };
 		B5A482591AE5DE6A001636BE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A482581AE5DE6A001636BE /* CoreAudio.framework */; };
+		B5AB34291F5F809D00E3B54F /* plain.eml in Resources */ = {isa = PBXBuildFile; fileRef = B5AB34281F5F7B2100E3B54F /* plain.eml */; };
 		B5E0D43A1F5DA00300E1077C /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E0D4391F5DA00300E1077C /* String+Mime.swift */; };
 		B5E0D43B1F5DA00300E1077C /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E0D4391F5DA00300E1077C /* String+Mime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B53173C41F5F4CCE00F9C5AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B504E60B1A89230F001B414B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B504E6AE1A898110001B414B;
+			remoteInfo = Marcel_Mac;
+		};
 		B59311341F58A7110056D353 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B504E60B1A89230F001B414B /* Project object */;
@@ -103,6 +114,10 @@
 		B504E69B1A896E82001B414B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B504E69C1A896E82001B414B /* Marcel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marcel_Tests.swift; sourceTree = "<group>"; };
 		B504E6AF1A898110001B414B /* Marcel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marcel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringConversionTests.swift; path = Tests/StringConversionTests.swift; sourceTree = SOURCE_ROOT; };
+		B53173BE1F5F4CCE00F9C5AB /* MarcelUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarcelUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B53173C01F5F4CCE00F9C5AB /* MarcelUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarcelUnitTests.swift; sourceTree = "<group>"; };
+		B53173C21F5F4CCE00F9C5AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B55523561F596422005D026B /* Part.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part.swift; sourceTree = "<group>"; };
 		B55523591F596576005D026B /* UInt8+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Mime.swift"; sourceTree = "<group>"; };
 		B555235F1F596705005D026B /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -127,6 +142,7 @@
 		B59311311F58A5CB0056D353 /* MimeDetailsWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MimeDetailsWindowController.xib; sourceTree = "<group>"; };
 		B59311391F58B92E0056D353 /* Data+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Mime.swift"; sourceTree = "<group>"; };
 		B5A482581AE5DE6A001636BE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		B5AB34281F5F7B2100E3B54F /* plain.eml */ = {isa = PBXFileReference; lastKnownFileType = text; name = plain.eml; path = MarcelTestMac/plain.eml; sourceTree = "<group>"; };
 		B5E0D4391F5DA00300E1077C /* String+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Mime.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +170,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B53173BB1F5F4CCE00F9C5AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B53173C31F5F4CCE00F9C5AB /* Marcel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B593111F1F58A3EB0056D353 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -173,6 +197,7 @@
 				B58D64661A898F81005A0002 /* Marcel_Mac */,
 				B58D64691A898F81005A0002 /* Marcel_iOS */,
 				B504E6991A896E82001B414B /* Marcel Tests */,
+				B53173BF1F5F4CCE00F9C5AB /* MarcelUnitTests */,
 				B504E6141A89230F001B414B /* Products */,
 				B5A482401AE5838F001636BE /* Frameworks */,
 			);
@@ -185,6 +210,7 @@
 				B504E6461A8968DC001B414B /* Marcel.framework */,
 				B504E6AF1A898110001B414B /* Marcel.framework */,
 				B59311221F58A3EB0056D353 /* MarcelTestMac.app */,
+				B53173BE1F5F4CCE00F9C5AB /* MarcelUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,6 +218,8 @@
 		B504E6991A896E82001B414B /* Marcel Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B5AB34281F5F7B2100E3B54F /* plain.eml */,
+				B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */,
 				B59311231F58A3EB0056D353 /* MarcelTestMac */,
 				B58D64871A899094005A0002 /* TestHost */,
 				B504E69C1A896E82001B414B /* Marcel_Tests.swift */,
@@ -207,6 +235,15 @@
 				B504E69B1A896E82001B414B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B53173BF1F5F4CCE00F9C5AB /* MarcelUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				B53173C01F5F4CCE00F9C5AB /* MarcelUnitTests.swift */,
+				B53173C21F5F4CCE00F9C5AB /* Info.plist */,
+			);
+			path = MarcelUnitTests;
 			sourceTree = "<group>";
 		};
 		B58D64661A898F81005A0002 /* Marcel_Mac */ = {
@@ -355,6 +392,24 @@
 			productReference = B504E6AF1A898110001B414B /* Marcel.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		B53173BD1F5F4CCE00F9C5AB /* MarcelUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B53173C61F5F4CCE00F9C5AB /* Build configuration list for PBXNativeTarget "MarcelUnitTests" */;
+			buildPhases = (
+				B53173BA1F5F4CCE00F9C5AB /* Sources */,
+				B53173BB1F5F4CCE00F9C5AB /* Frameworks */,
+				B53173BC1F5F4CCE00F9C5AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B53173C51F5F4CCE00F9C5AB /* PBXTargetDependency */,
+			);
+			name = MarcelUnitTests;
+			productName = MarcelUnitTests;
+			productReference = B53173BE1F5F4CCE00F9C5AB /* MarcelUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B59311211F58A3EB0056D353 /* MarcelTestMac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B593112D1F58A3EB0056D353 /* Build configuration list for PBXNativeTarget "MarcelTestMac" */;
@@ -399,6 +454,11 @@
 						CreatedOnToolsVersion = 6.1.1;
 						LastSwiftMigration = 0900;
 					};
+					B53173BD1F5F4CCE00F9C5AB = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = YY6CWUX533;
+						ProvisioningStyle = Automatic;
+					};
 					B59311211F58A3EB0056D353 = {
 						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = YY6CWUX533;
@@ -424,6 +484,7 @@
 				B504E6AE1A898110001B414B /* Marcel_Mac */,
 				B504E6661A89690C001B414B /* Combined Framework */,
 				B59311211F58A3EB0056D353 /* MarcelTestMac */,
+				B53173BD1F5F4CCE00F9C5AB /* MarcelUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -450,6 +511,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B53173BC1F5F4CCE00F9C5AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5AB34291F5F809D00E3B54F /* plain.eml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +586,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B53173BA1F5F4CCE00F9C5AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B53173C91F5F4CDA00F9C5AB /* StringConversionTests.swift in Sources */,
+				B53173C11F5F4CCE00F9C5AB /* MarcelUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B593111E1F58A3EB0056D353 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -529,6 +607,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B53173C51F5F4CCE00F9C5AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B504E6AE1A898110001B414B /* Marcel_Mac */;
+			targetProxy = B53173C41F5F4CCE00F9C5AB /* PBXContainerItemProxy */;
+		};
 		B59311351F58A7110056D353 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B504E6AE1A898110001B414B /* Marcel_Mac */;
@@ -830,6 +913,56 @@
 			};
 			name = Release;
 		};
+		B53173C71F5F4CCE00F9C5AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MarcelUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.MarcelUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		B53173C81F5F4CCE00F9C5AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MarcelUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.MarcelUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		B593112E1F58A3EB0056D353 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -928,6 +1061,15 @@
 			buildConfigurations = (
 				B504E6C31A898111001B414B /* Debug */,
 				B504E6C41A898111001B414B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B53173C61F5F4CCE00F9C5AB /* Build configuration list for PBXNativeTarget "MarcelUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B53173C71F5F4CCE00F9C5AB /* Debug */,
+				B53173C81F5F4CCE00F9C5AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

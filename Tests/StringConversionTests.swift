@@ -1,0 +1,63 @@
+//
+//  StringConversionTests.swift
+//  Marcel
+//
+//  Created by Ben Gottlieb on 9/5/17.
+//  Copyright © 2017 Stand Alone, inc. All rights reserved.
+//
+
+import XCTest
+@testable import Marcel
+
+class StringConversionTests: XCTestCase {
+    
+    override func setUp() {
+        super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+    
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+    }
+	
+	func testFullDataConversion() {
+		let url = Bundle(for: StringConversionTests.self).url(forResource: "plain", withExtension: "eml")!
+		let data = try! Data(contentsOf: url)
+		let parser = MIMEMessage(data: data)
+		let subject = parser!.subject
+		let checkSubject = "What do you think about Barack Obama's departing letter to Donald Trump? - Quora"
+		XCTAssertEqual(subject, checkSubject, "Failed to properly extract email title")
+		XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
+
+	}
+	
+    func testSimpleStringConversion() {
+		let starter = """
+Subject: =?utf-8?q?What_do_you_think_about_Barack_Obama=27s_departing_letter_to_Donal?=
+ =?utf-8?q?d_Trump=3F_-_Quora?=
+List-Unsubscribe: <http://www.quora.com/email_optout/qemail_optout?code=81c26ad52a28f52b4b3c4a9e9f008633&email=redacted%40redacted.com&email_track_id=nqfcqCRLGqvRHT4AgjqhoA%3D%3D&type=2>
+Message-ID: <monWoZaVXXXvgS-xX3Aq9Q@ismtpd0036p1mdw1.sendgrid.net>
+Date: Tue, 05 Sep 2017 12:49:37 +0000 (UTC)
+"""
+		
+		let check = """
+Subject: =?utf-8?q?What_do_you_think_about_Barack_Obama's_departing_letter_to_Donal?==?utf-8?q?d_Trump?_-_Quora?=
+List-Unsubscribe: <http://www.quora.com/email_optout/qemail_optout?codec26ad52a28f52b4b3c4a9e9f008633&email=redacted%40redacted.com&email_track_id=nqfcqCRLGqvRHT4AgjqhoA%3D%3D&type=2>
+Message-ID: <monWoZaVXXXvgS-xX3Aq9Q@ismtpd0036p1mdw1.sendgrid.net>
+Date: Tue, 05 Sep 2017 12:49:37 +0000 (UTC)
+"""
+		let data = starter.data(using: .ascii)!
+		let converted = data.convertFromMangledUTF8()
+		
+		let result = String(data: converted, encoding: .ascii)!
+		XCTAssertEqual(result, check, "Failed to properly convert initial string")
+		
+		let components = converted.components(separatedBy: "\n")!
+		XCTAssert(components.count == 4, "Wrong number of components in split-string, expected 4, got \(components.count)")
+
+		let checkSubject = "Subject: What do you think about Barack Obama's departing letter to Donald Trump? - Quora"
+		XCTAssert(components[0].decodedFromUTF8Wrapping == checkSubject, "Failed to parse the email title (got \(components[0].decodedFromUTF8Wrapping), expected \(checkSubject)")
+    }
+	
+}

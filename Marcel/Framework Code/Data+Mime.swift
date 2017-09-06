@@ -195,7 +195,6 @@ extension Data {
 					lastWasSentinel = false
 					if pointingToNewline, i < (length - 1) {					//newline. Might be a hard wrap
 						if ptr[i + 1] == space || ptr[i + 1] == tab {				//hard wrap. Remove the newline and the space
-							count -= 1
 							i += 2
 							continue
 						}
