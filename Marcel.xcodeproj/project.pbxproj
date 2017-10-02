@@ -32,6 +32,7 @@
 		B555235B1F596576005D026B /* UInt8+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55523591F596576005D026B /* UInt8+Mime.swift */; };
 		B55523601F596705005D026B /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555235F1F596705005D026B /* Header.swift */; };
 		B55523611F596705005D026B /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555235F1F596705005D026B /* Header.swift */; };
+		B57A1C3B1F8296B300AFA3DE /* second-encoding.eml in Resources */ = {isa = PBXBuildFile; fileRef = B57A1C3A1F8296AF00AFA3DE /* second-encoding.eml */; };
 		B583A78A1CB4951C00AF73BA /* Marcel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B504E6461A8968DC001B414B /* Marcel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B58D64791A898F89005A0002 /* Marcel.h in Headers */ = {isa = PBXBuildFile; fileRef = B58D64681A898F81005A0002 /* Marcel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B58D64901A899094005A0002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D64881A899094005A0002 /* AppDelegate.swift */; };
@@ -129,6 +130,7 @@
 		B55523561F596422005D026B /* Part.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part.swift; sourceTree = "<group>"; };
 		B55523591F596576005D026B /* UInt8+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Mime.swift"; sourceTree = "<group>"; };
 		B555235F1F596705005D026B /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		B57A1C3A1F8296AF00AFA3DE /* second-encoding.eml */ = {isa = PBXFileReference; lastKnownFileType = text; name = "second-encoding.eml"; path = "MarcelTestMac/second-encoding.eml"; sourceTree = "<group>"; };
 		B58D64671A898F81005A0002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58D64681A898F81005A0002 /* Marcel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Marcel.h; sourceTree = "<group>"; };
 		B58D646A1A898F81005A0002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			children = (
 				B5AB34281F5F7B2100E3B54F /* plain.eml */,
 				B5E0D43C1F5FA65D00E1077C /* equal-sign-encoding.eml */,
+				B57A1C3A1F8296AF00AFA3DE /* second-encoding.eml */,
 				B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */,
 				B59311231F58A3EB0056D353 /* MarcelTestMac */,
 				B58D64871A899094005A0002 /* TestHost */,
@@ -531,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5AB34291F5F809D00E3B54F /* plain.eml in Resources */,
+				B57A1C3B1F8296B300AFA3DE /* second-encoding.eml in Resources */,
 				B5E0D43D1F5FA66000E1077C /* equal-sign-encoding.eml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

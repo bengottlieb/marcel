@@ -41,6 +41,15 @@ class StringConversionTests: XCTestCase {
 		XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
 	}
 	
+	func testLineBreakDataConversion2() {
+		let url = Bundle(for: StringConversionTests.self).url(forResource: "second-encoding", withExtension: "eml")!
+		let data = try! Data(contentsOf: url)
+		let parser = MIMEMessage(data: data)
+		let body = parser!.htmlBody!
+		let checkContent = "If you haven’t thought"
+		XCTAssertTrue(body.contains(checkContent) != nil, "Failed to properly extract email body")
+	}
+	
 	func testLineBreakStringConversion() {
 
 		let starter = "Codable articles are all over the place lately=2C but this one talks about=\r\n handling dates a dateEncodingStrategy that can handle many=2C many format=\r\ns. =F0=9F=8E=89"

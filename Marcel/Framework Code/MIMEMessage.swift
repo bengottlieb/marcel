@@ -17,8 +17,8 @@ public class MIMEMessage {
 	var mainPart: Part!
 	
 	public var htmlBody: String? {
-		if let html = self.mainPart.part(ofType: "text/html")?.bodyString { return html }
-		if let text = self.mainPart.part(ofType: "text/plain")?.bodyString { return "<html><body>\(text)</body></html>" }
+		if let html = self.mainPart.part(ofType: "text/html")?.bodyString(convertingFromUTF8: false) { return html }
+		if let text = self.mainPart.part(ofType: "text/plain")?.bodyString(convertingFromUTF8: true) { return "<html><body>\(text)</body></html>" }
 		return nil
 	}
 	
@@ -37,7 +37,7 @@ public class MIMEMessage {
 		}
 		
 		self.raw = data
-		self.data = data.convertFromMangledUTF8()
+		self.data = data.convertNewlines()
 		self.string = string
 		if !self.setup() { return nil }
 	}
@@ -51,7 +51,7 @@ public class MIMEMessage {
 			return nil
 		}
 		self.string = string
-		self.data = data.convertFromMangledUTF8()
+		self.data = data.convertNewlines()
 		self.raw = self.data
 		if !self.setup() { return nil }
 	}

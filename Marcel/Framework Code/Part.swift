@@ -20,8 +20,9 @@ extension MIMEMessage {
 			return self.headers[header]?.cleanedBody
 		}
 
-		public var bodyString: String {
-			let data = self.data
+		public func bodyString(convertingFromUTF8: Bool) -> String {
+			var data = self.data
+			if convertingFromUTF8 { data = data.convertFromMangledUTF8() }
 			
 			guard let string = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .ascii) else { return "\(data.count) bytes" }
 			
@@ -79,7 +80,7 @@ extension MIMEMessage {
 			}
 			
 			string += "\n"
-			string += self.bodyString
+			string += self.bodyString(convertingFromUTF8: true)
 			return string
 		}
 	}
