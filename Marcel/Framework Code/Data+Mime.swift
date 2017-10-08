@@ -85,13 +85,56 @@ extension Data {
 		}
 	}
 	
+	var mimeContentStart: Int? {
+		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
+			if self.count <= 4 { return nil }
+			let upper = self.count - 4
+			for i in 0...upper {
+				if ptr[i] == 10 && ptr[i + 1] == 10 { return i }
+				if ptr[i] == 13 && ptr[i + 1] == 13 { return i }
+				if ptr[i] == 13 && ptr[i + 1] == 10 && ptr[i + 2] == 13 && ptr[i + 3] == 10 { return i }
+			}
+			return nil
+		}
+	}
+	
+	func separated(by sep: String) -> [Data] {
+		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
+			var results: [Data] = []
+			let sepBytes = Data(bytes: [UInt8](sep.utf8), count: sep.count)
+			let first = sepBytes.first
+			let upper = self.count - sepBytes.count
+			var last: Int?
+			for i in 0...upper {
+				if ptr[i] == first, self[i..<(i + sep.count)] == sepBytes {
+					if let prev = last {
+						let chunk = self[prev..<i]
+						last = i + sep.count
+						results.append(chunk)
+					} else {
+						last = i + sep.count
+					}
+				}
+			}
+			
+			if let prev = last {
+				let chunk = self[prev...]
+				results.append(chunk)
+			}
+			return results
+		}
+	}
+	
 	func components() -> Components? {
 		var ranges: [Range<Data.Index>] = []
 		var i = 0
 		let count = self.count
+		var checkThese = ["\n", "\r"]
+		
+		if self.contains(string: "\r\n") { checkThese = ["\r\n"] }
 		
 		while i < count {
-			let index = self.firstIndex(of: ["\n", "\r"], startingAt: i) ?? count
+			let index = self.firstIndex(of: checkThese, startingAt: i) ?? count
 			ranges.append(i..<index)
 			i = index + 1
 			if i < self.count, self[i - 1] != 10, self[i] == 10 { i += 1}

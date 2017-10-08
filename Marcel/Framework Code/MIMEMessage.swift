@@ -37,29 +37,18 @@ public class MIMEMessage {
 		}
 		
 		self.raw = data
-		self.data = data.unwrapTabs()
+		self.data = data
 		self.string = string
 		if !self.setup() { return nil }
 	}
 		
-	public init?(string: String) {
-		guard let data = string.data(using: .utf8) else {
-			self.data = Data()
-			self.raw = Data()
-			self.string = ""
-			
-			return nil
-		}
-		self.string = string
-		self.data = data.unwrapTabs()
-		self.raw = self.data
-		if !self.setup() { return nil }
+	convenience init?(string: String) {
+		self.init(data: string.data(using: .utf8) ?? Data())
 	}
 	
 	func setup() -> Bool {
-		if let components = self.data.components() {
-			self.mainPart = Part(components: components)
-			
+		if let part = Part(data: self.data) {
+			self.mainPart = part
 			return true
 		}
 		return false

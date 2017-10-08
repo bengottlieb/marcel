@@ -45,8 +45,9 @@ class StringConversionTests: XCTestCase {
 		let url = Bundle(for: StringConversionTests.self).url(forResource: "failed-html", withExtension: "eml")!
 		let data = try! Data(contentsOf: url)
 		let parser = MIMEMessage(data: data)
+		let checkSubject = "What is the craziest element in the periodic table? - Quora"
 		let subject = parser!.subject
-	//	XCTAssertEqual(subject, checkSubject, "Failed to properly extract email title")
+		XCTAssertEqual(subject, checkSubject, "Failed to properly extract email title")
 		XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
 	}
 	
@@ -55,8 +56,8 @@ class StringConversionTests: XCTestCase {
 		let data = try! Data(contentsOf: url)
 		let parser = MIMEMessage(data: data)
 		let body = parser!.htmlBody!
-		let checkContent = "If you haven’t thought"
-		XCTAssertTrue(body.contains(checkContent) != nil, "Failed to properly extract email body")
+		let checkContent = "and on that same note, here are the new Human Interface Guidelines"
+		XCTAssertTrue(body.contains(checkContent), "Failed to properly extract email body")
 	}
 	
 	func testLineBreakStringConversion() {

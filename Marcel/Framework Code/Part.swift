@@ -51,29 +51,32 @@ extension MIMEMessage {
 			return self.body
 		}
 		
-		init(components: Data.Components) {
-			if let blankIndex = components.index(of: "") {
-				self.headers = components[0..<blankIndex].map { MIMEMessage.Part.Header($0) }
-				self.body = components[blankIndex..<components.count].unwrap7BitLineBreaks()
+		init?(data: Data) {
+			if let contentStart = data.mimeContentStart {
+				let subData = data[0...contentStart]
+				guard let components = subData.unwrapTabs().components() else { return nil }
+				
+				self.headers = components.all.map { MIMEMessage.Part.Header($0) }
+				self.body = data[contentStart...].convertFromMangledUTF8()
 				
 				var parts: [Part] = []
-				if let boundary = headers.allHeaders(ofKind: .contentType).flatMap({ $0.boundaryValue}).first {
-					let groups = components.separated(by: boundary)
+				if let boundary = self.headers[.contentType]?.boundaryValue {
+					let groups = data.separated(by: boundary)
 					
-					for i in 1..<groups.count {
-						let group = groups[i]
-						let subpart = Part(components: group)
-						parts.append(subpart)
+					for i in 0..<groups.count {
+						if let subpart = Part(data: Data(groups[i])) {
+							parts.append(subpart)
+						}
 					}
 				}
 				self.subParts = parts
 			} else {
-				self.headers = components.all.map { MIMEMessage.Part.Header($0) }
+				self.headers = []
 				self.subParts = []
-				self.body = Data()
+				self.body = data
 			}
 		}
-		
+
 		public var description: String {
 			var string = ""
 			
