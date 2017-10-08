@@ -37,7 +37,7 @@ public class MIMEMessage {
 		}
 		
 		self.raw = data
-		self.data = data.convertNewlines()
+		self.data = data.unwrapTabs()
 		self.string = string
 		if !self.setup() { return nil }
 	}
@@ -51,13 +51,13 @@ public class MIMEMessage {
 			return nil
 		}
 		self.string = string
-		self.data = data.convertNewlines()
+		self.data = data.unwrapTabs()
 		self.raw = self.data
 		if !self.setup() { return nil }
 	}
 	
 	func setup() -> Bool {
-		if let components = self.data.components(separatedBy: "\n") {
+		if let components = self.data.components() {
 			self.mainPart = Part(components: components)
 			
 			return true

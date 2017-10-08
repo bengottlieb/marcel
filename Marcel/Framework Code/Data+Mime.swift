@@ -49,14 +49,18 @@ extension Data {
 		}
 		
 		subscript(_ range: Range<Int>) -> Data {
-			var result = Data()
+			let lower = self.ranges[range.lowerBound].lowerBound
+			let upper = self.ranges[range.upperBound - 1].upperBound
 			
-			for i in range.lowerBound..<range.upperBound {
-				let chunk = self.ranges[i]
-				result.append(self.data[chunk])
-			}
-			
-			return result
+			return self.data[lower..<upper]
+//			var result = Data()
+//
+//			for i in range.lowerBound..<range.upperBound {
+//				let chunk = self.ranges[i]
+//				result.append(self.data[chunk])
+//			}
+//
+//			return result
 		}
 		
 		subscript(_ range: Range<Int>) -> Components {
@@ -81,38 +85,42 @@ extension Data {
 		}
 	}
 	
-	func components(separatedBy separator: String) -> Components? {
+	func components() -> Components? {
 		var ranges: [Range<Data.Index>] = []
 		var i = 0
 		let count = self.count
 		
 		while i < count {
-			let index = self.firstIndex(of: separator, startingAt: i) ?? count
+			let index = self.firstIndex(of: ["\n", "\r"], startingAt: i) ?? count
 			ranges.append(i..<index)
-			i = index + separator.utf8.count
+			i = index + 1
+			if i < self.count, self[i - 1] != 10, self[i] == 10 { i += 1}
 		}
 		
 		if ranges.count < 2 { return nil }
 		return Components(data: self, ranges: ranges)
 	}
 	
-	func contains(string: String) -> Bool { return self.firstIndex(of: string) != nil }
-	func firstIndex(of string: String, startingAt: Int = 0) -> Int? {
-		let bytes = [UInt8](string.utf8)
+	func contains(string: String) -> Bool { return self.firstIndex(of: [string]) != nil }
+	func firstIndex(of strings: [String], startingAt: Int = 0) -> Int? {
+		precondition(strings.count > 0)
+		let byteArrays = strings.map { [UInt8]($0.utf8) }
 		
-		if self.count < bytes.count { return nil }
+		if self.count < byteArrays.first!.count { return nil }
 		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
-			for i in startingAt..<(self.count - bytes.count) {
-				if ptr[i] == bytes[0] {
-					var valid = true
-					for j in 1..<bytes.count {
-						if ptr[i + j] != bytes[j] {
-							valid = false
-							break
+			for i in startingAt..<(self.count - byteArrays.first!.count) {
+				for bytes in byteArrays {
+					if ptr[i] == bytes[0] {
+						var valid = true
+						for j in 1..<bytes.count {
+							if ptr[i + j] != bytes[j] {
+								valid = false
+								break
+							}
 						}
+						
+						if valid { return i }
 					}
-					
-					if valid { return i }
 				}
 			}
 			return nil
@@ -159,32 +167,26 @@ extension Data {
 		}
 	}
 	
-	func convertNewlines() -> Data {
+	func unwrapTabs() -> Data {
 		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
 			var count = 0, i = 0
 			let length = self.count
 			let output = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
 			let newline = UInt8(firstCharacterOf: "\n")
-			let equals = UInt8(firstCharacterOf: "=")
 			let cr = UInt8(firstCharacterOf: "\r")
 			let space = UInt8(firstCharacterOf: " ")
 			let tab = UInt8(firstCharacterOf: "\t")
-
+			
 			while i < length {
 				var isNewline = false
 				if ptr[i] == cr {				//if it's a newline, check for CRLF and either remove the CR or replace it with an LF
-					if i == length - 1 { break }
-					if i > 0 && ptr[i - 1] == equals { count -= 1 }
-					if ptr[i + 1] == newline { i += 1 }
+//					if i == length - 1 { break }
+//					if ptr[i + 1] == newline { i += 1 }
 					isNewline = true
 				} else if ptr[i] == newline {
-					if i > 1 && ptr[i - 1] == equals && ptr[i - 2] != equals {
-						count -= 1
-						i += 1
-						continue
-					}
 					isNewline = true
 				}
+
 				output[count] = ptr[i]
 				count += 1
 				i += 1
@@ -193,6 +195,33 @@ extension Data {
 					count -=  1
 					i += 1
 				}
+				
+			}
+			return Data(bytes: output, count: count)
+		}
+	}
+	
+	func unwrap7BitLineBreaks() -> Data {
+		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
+			var count = 0, i = 0
+			let length = self.count
+			let output = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
+			let newline = UInt8(firstCharacterOf: "\n")
+			let equals = UInt8(firstCharacterOf: "=")
+			let cr = UInt8(firstCharacterOf: "\r")
+			let questionMark = UInt8(firstCharacterOf: "?")
+			
+			while i < length {
+				if ptr[i] == cr || ptr[i] == newline {				//if it's a newline, check for CRLF and either remove the CR or replace it with an LF
+					if i > 1 && ptr[i - 1] == equals && ptr[i - 2] != equals && ptr[i - 2] != questionMark {
+						count -= 1
+						i += 1
+						continue
+					}
+				}
+				output[count] = ptr[i]
+				count += 1
+				i += 1
 			}
 			return Data(bytes: output, count: count)
 		}

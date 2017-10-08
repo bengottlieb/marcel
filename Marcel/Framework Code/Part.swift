@@ -16,12 +16,12 @@ extension MIMEMessage {
 		public let body: Data
 		let subParts: [Part]
 		
-		public subscript(_ header: MIMEMessage.Part.Header.Kind) -> String? {
+		public subscript(_ header: Header.Kind) -> String? {
 			return self.headers[header]?.cleanedBody
 		}
 
 		public func bodyString(convertingFromUTF8: Bool) -> String {
-			var data = self.data
+			var data = self.data.unwrap7BitLineBreaks()
 			let ascii = String(data: data, encoding: .ascii) ?? ""
 			
 			if ascii.contains("=3D") { data = data.convertFromMangledUTF8() }
@@ -54,10 +54,10 @@ extension MIMEMessage {
 		init(components: Data.Components) {
 			if let blankIndex = components.index(of: "") {
 				self.headers = components[0..<blankIndex].map { MIMEMessage.Part.Header($0) }
-				self.body = components[blankIndex..<components.count]
+				self.body = components[blankIndex..<components.count].unwrap7BitLineBreaks()
 				
 				var parts: [Part] = []
-				if let boundary = self.headers[.contentType]?.boundaryValue {
+				if let boundary = headers.allHeaders(ofKind: .contentType).flatMap({ $0.boundaryValue}).first {
 					let groups = components.separated(by: boundary)
 					
 					for i in 1..<groups.count {

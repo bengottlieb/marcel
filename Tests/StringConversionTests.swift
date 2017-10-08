@@ -76,7 +76,7 @@ class StringConversionTests: XCTestCase {
 .w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">
 """
 		let data = text.data(using: .ascii)!
-		let converted = data.convertNewlines()
+		let converted = data.unwrapTabs().unwrap7BitLineBreaks()
 		let result = String(data: converted, encoding: .utf8)!
 		let check = "<\"http://www.w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd\">"
 		XCTAssertEqual(result, check, "Failed to properly unwrap newlines")
@@ -103,7 +103,7 @@ Date: Tue, 05 Sep 2017 12:49:37 +0000 (UTC)
 		let result = String(data: converted, encoding: .ascii)!
 		XCTAssertEqual(result, check, "Failed to properly convert initial string")
 		
-		let components = converted.components(separatedBy: "\n")!
+		let components = converted.components()!
 		XCTAssert(components.count == 4, "Wrong number of components in split-string, expected 4, got \(components.count)")
 
 		let checkSubject = "Subject: What do you think about Barack Obama's departing letter to Donald Trump? - Quora"
