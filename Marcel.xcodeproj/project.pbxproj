@@ -53,6 +53,7 @@
 		B5A482511AE5DCCC001636BE /* Marcel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504E6461A8968DC001B414B /* Marcel.framework */; };
 		B5A482591AE5DE6A001636BE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A482581AE5DE6A001636BE /* CoreAudio.framework */; };
 		B5AB34291F5F809D00E3B54F /* plain.eml in Resources */ = {isa = PBXBuildFile; fileRef = B5AB34281F5F7B2100E3B54F /* plain.eml */; };
+		B5BAA51A1F87FC3D00637C51 /* failed-html.eml in Resources */ = {isa = PBXBuildFile; fileRef = B5BAA5191F87FC3100637C51 /* failed-html.eml */; };
 		B5E0D43A1F5DA00300E1077C /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E0D4391F5DA00300E1077C /* String+Mime.swift */; };
 		B5E0D43B1F5DA00300E1077C /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E0D4391F5DA00300E1077C /* String+Mime.swift */; };
 		B5E0D43D1F5FA66000E1077C /* equal-sign-encoding.eml in Resources */ = {isa = PBXBuildFile; fileRef = B5E0D43C1F5FA65D00E1077C /* equal-sign-encoding.eml */; };
@@ -153,6 +154,7 @@
 		B59311391F58B92E0056D353 /* Data+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Mime.swift"; sourceTree = "<group>"; };
 		B5A482581AE5DE6A001636BE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		B5AB34281F5F7B2100E3B54F /* plain.eml */ = {isa = PBXFileReference; lastKnownFileType = text; name = plain.eml; path = MarcelTestMac/plain.eml; sourceTree = "<group>"; };
+		B5BAA5191F87FC3100637C51 /* failed-html.eml */ = {isa = PBXFileReference; lastKnownFileType = text; name = "failed-html.eml"; path = "MarcelTestMac/failed-html.eml"; sourceTree = "<group>"; };
 		B5E0D4391F5DA00300E1077C /* String+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Mime.swift"; sourceTree = "<group>"; };
 		B5E0D43C1F5FA65D00E1077C /* equal-sign-encoding.eml */ = {isa = PBXFileReference; lastKnownFileType = text; name = "equal-sign-encoding.eml"; path = "MarcelTestMac/equal-sign-encoding.eml"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,6 +234,7 @@
 				B5AB34281F5F7B2100E3B54F /* plain.eml */,
 				B5E0D43C1F5FA65D00E1077C /* equal-sign-encoding.eml */,
 				B57A1C3A1F8296AF00AFA3DE /* second-encoding.eml */,
+				B5BAA5191F87FC3100637C51 /* failed-html.eml */,
 				B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */,
 				B59311231F58A3EB0056D353 /* MarcelTestMac */,
 				B58D64871A899094005A0002 /* TestHost */,
@@ -535,6 +538,7 @@
 			files = (
 				B5AB34291F5F809D00E3B54F /* plain.eml in Resources */,
 				B57A1C3B1F8296B300AFA3DE /* second-encoding.eml in Resources */,
+				B5BAA51A1F87FC3D00637C51 /* failed-html.eml in Resources */,
 				B5E0D43D1F5FA66000E1077C /* equal-sign-encoding.eml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

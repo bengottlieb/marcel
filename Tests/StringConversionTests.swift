@@ -41,6 +41,15 @@ class StringConversionTests: XCTestCase {
 		XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
 	}
 	
+	func testHTMLExtraction() {
+		let url = Bundle(for: StringConversionTests.self).url(forResource: "failed-html", withExtension: "eml")!
+		let data = try! Data(contentsOf: url)
+		let parser = MIMEMessage(data: data)
+		let subject = parser!.subject
+		XCTAssertEqual(subject, checkSubject, "Failed to properly extract email title")
+		XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
+	}
+	
 	func testLineBreakDataConversion2() {
 		let url = Bundle(for: StringConversionTests.self).url(forResource: "second-encoding", withExtension: "eml")!
 		let data = try! Data(contentsOf: url)
