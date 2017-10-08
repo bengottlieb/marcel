@@ -165,6 +165,7 @@ extension Data {
 			let length = self.count
 			let output = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
 			let newline = UInt8(firstCharacterOf: "\n")
+			let equals = UInt8(firstCharacterOf: "=")
 			let cr = UInt8(firstCharacterOf: "\r")
 			let space = UInt8(firstCharacterOf: " ")
 			let tab = UInt8(firstCharacterOf: "\t")
@@ -173,9 +174,15 @@ extension Data {
 				var isNewline = false
 				if ptr[i] == cr {				//if it's a newline, check for CRLF and either remove the CR or replace it with an LF
 					if i == length - 1 { break }
+					if i > 0 && ptr[i - 1] == equals { count -= 1 }
 					if ptr[i + 1] == newline { i += 1 }
 					isNewline = true
 				} else if ptr[i] == newline {
+					if i > 1 && ptr[i - 1] == equals && ptr[i - 2] != equals {
+						count -= 1
+						i += 1
+						continue
+					}
 					isNewline = true
 				}
 				output[count] = ptr[i]

@@ -235,10 +235,10 @@
 				B5E0D43C1F5FA65D00E1077C /* equal-sign-encoding.eml */,
 				B57A1C3A1F8296AF00AFA3DE /* second-encoding.eml */,
 				B5BAA5191F87FC3100637C51 /* failed-html.eml */,
-				B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */,
 				B59311231F58A3EB0056D353 /* MarcelTestMac */,
 				B58D64871A899094005A0002 /* TestHost */,
 				B504E69C1A896E82001B414B /* Marcel_Tests.swift */,
+				B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */,
 				B504E69A1A896E82001B414B /* Supporting Files */,
 			);
 			name = "Marcel Tests";

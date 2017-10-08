@@ -22,7 +22,9 @@ extension MIMEMessage {
 
 		public func bodyString(convertingFromUTF8: Bool) -> String {
 			var data = self.data
-			if convertingFromUTF8 { data = data.convertFromMangledUTF8() }
+			let ascii = String(data: data, encoding: .ascii) ?? ""
+			
+			if ascii.contains("=3D") { data = data.convertFromMangledUTF8() }
 			
 			guard let string = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .ascii) else { return "\(data.count) bytes" }
 			
