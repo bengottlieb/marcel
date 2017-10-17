@@ -282,11 +282,21 @@ extension Data {
 			let space = UInt8(firstCharacterOf: " ")
 			let tab = UInt8(firstCharacterOf: "\t")
 			var lastWasSentinel = false
-			
+            let backSlash = UInt8(firstCharacterOf: "\\")
+            let u = UInt8(firstCharacterOf: "u")
+
 			while i < length {
 				let pointingToNewline = ptr[i] == newline || ptr[i] == cr
 				
-				if ptr[i] == sentinel, i > 0, ptr[i - 1] != questionMark {					//currently at an = character
+                if ptr[i] == backSlash, ptr[i + 1] == u, let bytes = ptr.nextHexCharacters(from: i + 2, length: length), let chr = UInt32(bytes: bytes), let scalar = UnicodeScalar(chr) {
+                    i += bytes.count + 2
+                    let repl = String(Character(scalar)).utf8
+                    for byte in repl {
+                        output[count] = byte
+                        count += 1
+                    }
+                    continue
+                } else if ptr[i] == sentinel, i > 0, ptr[i - 1] != questionMark {					//currently at an = character
 					if lastWasSentinel {
 						lastWasSentinel = false
 						output[count] = ptr[i]
@@ -328,5 +338,23 @@ extension Data {
 			return Data(bytes: output, count: count)
 		}
 	}
+}
+
+
+extension UnsafePointer {
+    func nextHexCharacters(from startIndex: Int, limitedTo: Int = 4, length: Int) -> [UInt8]? {
+        guard let ptr = self as? UnsafePointer<UInt8> else { return nil }
+        var results: [UInt8] = []
+        var index = startIndex
+        let max = min(startIndex + limitedTo, length)
+        
+        while index < max {
+            guard let chr = UInt8(asciiChar: ptr[index]) else { break }
+            results.append(chr)
+            index += 1
+        }
+        
+        return results
+    }
 }
 
