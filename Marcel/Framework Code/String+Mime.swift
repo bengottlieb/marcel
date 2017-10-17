@@ -13,15 +13,29 @@ extension String {
 		var result = self
 		let utf = "=?utf-8?Q?"
 		let utfEnd = "?="
+		var done = false
+		var lastUpperBound: Int?
 		
 //		while let range = result.range(of: utf, options: .caseInsensitive),
 //			let endRange = result.range(of: utfEnd, options: .caseInsensitive, range: range.upperBound..<(self.index(before: self.endIndex)), locale: nil) {
 
-		while let range = result.range(of: utf, options: .caseInsensitive), let endRange = result.range(of: utfEnd), range.upperBound < endRange.lowerBound {
-			let innerRange = range.upperBound..<endRange.lowerBound
+		while let range = result.range(of: utf, options: .caseInsensitive), let endRange = result.range(of: utfEnd), range.upperBound < endRange.lowerBound, !done {
+			var upperBound = endRange.lowerBound
+			if let lineBreak = result.range(of: "\n", options: [], range: range.upperBound..<result.endIndex, locale: nil), lineBreak.lowerBound < upperBound {
+				upperBound = lineBreak.lowerBound
+				done = true
+			}
+			let innerRange = range.upperBound..<upperBound
 			let innerChunk = String(result[innerRange]) ?? ""
-			result = result.replacingCharacters(in: range.lowerBound..<endRange.upperBound, with: innerChunk.convertedFromEmailHeaderField)
+			let convertedFiller = innerChunk.convertedFromEmailHeaderField
+			result = result.replacingCharacters(in: range.lowerBound..<endRange.upperBound, with: convertedFiller)
+			lastUpperBound = result.distance(from: result.startIndex, to: range.lowerBound) + convertedFiller.count
 		}
+		
+		if let endLimit = lastUpperBound {
+			result = String(result[..<result.index(result.startIndex, offsetBy: endLimit)])
+		}
+		
 		return result.trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 	

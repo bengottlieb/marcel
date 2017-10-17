@@ -108,17 +108,13 @@ Message-ID: <monWoZaVXXXvgS-xX3Aq9Q@ismtpd0036p1mdw1.sendgrid.net>
 Date: Tue, 05 Sep 2017 12:49:37 +0000 (UTC)
 """
 		
-		let check = """
-Subject: =?utf-8?q?What_do_you_think_about_Barack_Obama's_departing_letter_to_Donal?==?utf-8?q?d_Trump?_-_Quora?=
-List-Unsubscribe: <http://www.quora.com/email_optout/qemail_optout?codec26ad52a28f52b4b3c4a9e9f008633&email=redacted%40redacted.com&email_track_id=nqfcqCRLGqvRHT4AgjqhoA%3D%3D&type=2>
-Message-ID: <monWoZaVXXXvgS-xX3Aq9Q@ismtpd0036p1mdw1.sendgrid.net>
-Date: Tue, 05 Sep 2017 12:49:37 +0000 (UTC)
-"""
+		let check = "Subject: What do you think about Barack Obama's departing letter to Donald Trump? - Quora"
 		let data = starter.data(using: .ascii)!
 		let converted = data.convertFromMangledUTF8()
 		
 		let result = String(data: converted, encoding: .utf8)!
-		XCTAssertEqual(result, check, "Failed to properly convert initial string")
+		let decoded = result.decodedFromUTF8Wrapping
+		XCTAssertEqual(decoded, check, "Failed to properly convert initial string")
 		
 		let components = converted.components()!
 		XCTAssert(components.count == 4, "Wrong number of components in split-string, expected 4, got \(components.count)")
