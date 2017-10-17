@@ -32,6 +32,7 @@ class MimeDetailsWindowController: NSWindowController {
 		self.window?.contentView?.addSubview(self.webView)
 		self.webView.autoresizingMask = [.width, .height]
 		
+		self.webView.frameLoadDelegate = self
 		self.window?.title = self.parser.subject ?? "Untitled"
 		
 		let html = self.parser.htmlBody ?? "<html><body>NONE FOUND</body></html>"
@@ -41,4 +42,21 @@ class MimeDetailsWindowController: NSWindowController {
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
     
+}
+
+extension MimeDetailsWindowController: WebFrameLoadDelegate {
+	public func webView(_ sender: WebView!, didStartProvisionalLoadFor frame: WebFrame!) {
+	}
+	
+	public func webView(_ sender: WebView!, didFailProvisionalLoadWithError error: Error!, for frame: WebFrame!) {
+		
+	}
+	
+	public func webView(_ sender: WebView!, didFinishLoadFor frame: WebFrame!) {
+		
+	}
+	
+	public func webView(_ sender: WebView!, didFailLoadWithError error: Error!, for frame: WebFrame!) {
+		
+	}
 }

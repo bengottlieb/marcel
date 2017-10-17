@@ -314,13 +314,14 @@ extension Data {
 							i += 1
 						}
 						continue
-					} else if let escaped = UInt8(asciiChar: ptr[i], and: ptr[i + 1]) {
+					} else if let bytes = ptr.nextHexCharacters(from: i, limitedTo: 3, length: length), bytes.count == 2, let escaped = UInt8(bytes: bytes) {
 //						let unicode = UnicodeScalar(escaped)
 //						count -= 1
 //						for point in String(unicode).utf8 {
 //							output[count] = point
 //							count += 1
 //						}
+//						let escaped = UInt8(asciiChar: ptr[i], and: ptr[i + 1])
 						output[count - 1] = escaped
 						i += 2
 						continue

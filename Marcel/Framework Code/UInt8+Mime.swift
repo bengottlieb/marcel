@@ -37,11 +37,19 @@ extension UInt8 {
 	}
 }
 
+extension UInt8 {
+	init?(bytes: [UInt8]) {
+		if bytes.count == 2 { self = bytes[0] << 4 + bytes[1] }
+		else { return nil }
+	}
+}
+
+
 extension UInt32 {
-    init?(bytes: [UInt8]) {
-        if bytes.count == 2 { self = UInt32(bytes[0]) << 4 + UInt32(bytes[1]) }
-        else if bytes.count == 4 { self = UInt32(bytes[0]) << 12 + UInt32(bytes[1]) << 8 + UInt32(bytes[2]) << 4 + UInt32(bytes[3]) }
-        else { return nil }
-    }
+	init?(bytes: [UInt8]) {
+		if bytes.count == 2 { self = UInt32(bytes[0]) << 4 + UInt32(bytes[1]) }
+		else if bytes.count == 4 { self = UInt32(bytes[0]) << 12 + UInt32(bytes[1]) << 8 + UInt32(bytes[2]) << 4 + UInt32(bytes[3]) }
+		else { return nil }
+	}
 }
 
