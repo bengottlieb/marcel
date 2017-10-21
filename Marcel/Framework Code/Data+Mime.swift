@@ -283,7 +283,11 @@ extension Data {
 			let tab = UInt8(firstCharacterOf: "\t")
 			var lastWasSentinel = false
             let backSlash = UInt8(firstCharacterOf: "\\")
-            let u = UInt8(firstCharacterOf: "u")
+			let u = UInt8(firstCharacterOf: "u")
+			let three = UInt8(firstCharacterOf: "3")
+			let d = UInt8(firstCharacterOf: "d")
+			let D = UInt8(firstCharacterOf: "D")
+			let equals = UInt8(firstCharacterOf: "=")
 
 			while i < length {
 				let pointingToNewline = ptr[i] == newline || ptr[i] == cr
@@ -313,6 +317,10 @@ extension Data {
 						while (ptr[i] == newline || ptr[i] == cr), i < length {
 							i += 1
 						}
+						continue
+					} else if ptr[i] == three && (ptr[i + 1] == d || ptr[i + 1] == D) {
+						output[count - 1] = equals
+						i += 2
 						continue
 					} else if let bytes = ptr.nextHexCharacters(from: i, limitedTo: 3, length: length), bytes.count == 2, let escaped = UInt8(bytes: bytes) {
 //						let unicode = UnicodeScalar(escaped)
