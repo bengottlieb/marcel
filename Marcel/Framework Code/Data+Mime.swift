@@ -292,7 +292,7 @@ extension Data {
 			while i < length {
 				let pointingToNewline = ptr[i] == newline || ptr[i] == cr
 				
-                if ptr[i] == backSlash, ptr[i + 1] == u, let bytes = ptr.nextHexCharacters(from: i + 2, length: length), let chr = UInt32(bytes: bytes), let scalar = UnicodeScalar(chr) {
+                if ptr[i] == backSlash, ptr[i + 1] == u, let bytes = ptr.nextHexCharacters(from: i + 2, length: length), let chr = UInt32(hexBytes: bytes), let scalar = UnicodeScalar(chr) {
                     i += bytes.count + 2
                     let repl = String(Character(scalar)).utf8
                     for byte in repl {

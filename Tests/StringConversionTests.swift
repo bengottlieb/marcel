@@ -36,7 +36,18 @@ class StringConversionTests: XCTestCase {
         //let plain = "d’s d".data(using: .utf8)
         XCTAssertEqual(result, "d’s d", "Failed to properly extract slash-u encoded apostrophe")
     }
-    
+	
+	func testMoreSlashUEncoding() {
+		let data = """
+		Are the US soldiers\\u2019 bank accounts fr=
+		ozen while they\\u2019re deployed in Iraq?
+		""".data(using: .ascii)
+		let converted = data?.convertFromMangledUTF8()
+		let result = String(data: converted!, encoding: .utf8)
+		//let plain = "d’s d".data(using: .utf8)
+		XCTAssertEqual(result, "Are the US soldiers’ bank accounts frozen while they’re deployed in Iraq?", "Failed to properly extract slash-u encoded apostrophe")
+	}
+	
 	func testFullDataConversion() {
 		let url = Bundle(for: StringConversionTests.self).url(forResource: "plain", withExtension: "eml")!
 		let data = try! Data(contentsOf: url)
