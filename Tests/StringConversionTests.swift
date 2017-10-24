@@ -88,14 +88,18 @@ class StringConversionTests: XCTestCase {
 	}
 	
 	func testLineBreakStringConversion() {
-
-		let starter = "Codable articles are all over the place lately=2C but this one talks about=\r\n handling dates a dateEncodingStrategy that can handle many=2C many format=\r\ns. =F0=9F=8E=89"
-		let data = starter.data(using: .ascii)!
-		let converted = data.convertFromMangledUTF8()
-		let check = "Codable articles are all over the place lately, but this one talks about handling dates a dateEncodingStrategy that can handle many, many formats. 🎉"
+		let starters = ["a=E2=\n=80=99re test =E2=80=9CFair share,=E2=80=9D as in, =E2=80=9Cthe",
+			"Subject: =?utf-8?q?Are_the_US_soldiers=E2=80=99_bank_accounts_frozen_while_they?==?utf-8?q?=E2=80=99re_deployed_in_Iraq=3F_-_Quora?=", "Codable articles are all over the place lately=2C but this one talks about=\r\n handling dates a dateEncodingStrategy that can handle many=2C many format=\r\ns. =F0=9F=8E=89"]
+		let checks = ["a’re test “Fair share,” as in, “the", "Subject: =?utf-8?q?Are_the_US_soldiers’_bank_accounts_frozen_while_they?==?utf-8?q?’re_deployed_in_Iraq?_-_Quora?=", "Codable articles are all over the place lately, but this one talks about handling dates a dateEncodingStrategy that can handle many, many formats. 🎉"]
 		
-		let result = String(data: converted, encoding: .utf8)!
-		XCTAssertEqual(result, check, "Failed to properly convert initial string")
+		for i in 0..<starters.count {
+			let starter = starters[i]
+			let data = starter.data(using: .ascii)!
+			let converted = data.convertFromMangledUTF8()
+		
+			let result = String(data: converted, encoding: .utf8)!
+			XCTAssertEqual(result, checks[i], "Failed to properly convert initial string")
+		}
 	}
 
 	func testQuotablePrintedDecoding() {

@@ -300,7 +300,7 @@ extension Data {
                         count += 1
                     }
                     continue
-                } else if ptr[i] == sentinel, i > 0, ptr[i - 1] != questionMark {					//currently at an = character
+				} else if ptr[i] == sentinel, i > 0, (ptr[i - 1] != questionMark || ptr[i + 1] != newline) {					//currently at an = character
 					if lastWasSentinel {
 						lastWasSentinel = false
 						output[count] = ptr[i]
@@ -323,25 +323,41 @@ extension Data {
 						i += 2
 						continue
 					} else if let bytes = ptr.nextHexCharacters(from: i, limitedTo: 3, length: length), bytes.count == 2, let escaped = UInt8(bytes: bytes) {
-//						let unicode = UnicodeScalar(escaped)
-//						count -= 1
-//						for point in String(unicode).utf8 {
-//							output[count] = point
-//							count += 1
-//						}
-//						let escaped = UInt8(asciiChar: ptr[i], and: ptr[i + 1])
-						output[count - 1] = escaped
-						i += 2
+						var translated = [escaped]
+						var additionalOffset = bytes.count
+						while true {
+							if ptr[i + additionalOffset] != sentinel { break }
+							if ptr[i + additionalOffset + 1] == newline {
+								additionalOffset += 2
+								continue
+							}
+							guard let nextBytes = ptr.nextHexCharacters(from: i + additionalOffset + 1, limitedTo: 2, length: length), nextBytes.count == 2, let escaped = UInt8(bytes: nextBytes) else { break }
+							
+							translated.append(escaped)
+							additionalOffset += bytes.count + 1
+						}
+
+						count -= 1
+						for byte in translated {
+							output[count] = byte
+							count += 1
+						}
+						i += additionalOffset
 						continue
 					}
 				} else if pointingToNewline, i < (length - 1), (ptr[i + 1] == space || ptr[i + 1] == tab) {
 					i += 2
 					continue
 				}
-
+				
 				output[count] = ptr[i]
 				count += 1
 				i += 1
+				
+//				if String(data: Data(bytes: output, count: count), encoding: .utf8) == nil {
+//					print("Bad string")
+//					return Data(bytes: output, count: count)
+//				}
 			}
 			
 			return Data(bytes: output, count: count)
