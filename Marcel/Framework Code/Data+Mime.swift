@@ -271,6 +271,15 @@ extension Data {
 	}
 	
 	func convertFromMangledUTF8() -> Data {
+		/*
+			if we look at three bytes, and ignore any runs longer than 2, then we miss stuff like References=20=2F=20A=20Case, which should be "References / A Case", but the =20A is throwing it for a loop
+
+			if we look at only two bytes, then we catch that, but we miss URL parameters such as &ct=1507640404515657
+		*/
+		return self.convertCheckingByteRuns(maxLength: 2)
+	}
+	
+	func convertCheckingByteRuns(maxLength: Int) -> Data {
 		return self.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
 			var count = 0, i = 0
 			let length = self.count
@@ -322,7 +331,7 @@ extension Data {
 						output[count - 1] = equals
 						i += 2
 						continue
-					} else if let bytes = ptr.nextHexCharacters(from: i, limitedTo: 3, length: length), bytes.count == 2, let escaped = UInt8(bytes: bytes) {
+					} else if let bytes = ptr.nextHexCharacters(from: i, limitedTo: maxLength, length: length), bytes.count == 2, let escaped = UInt8(bytes: bytes) {
 						var translated = [escaped]
 						var additionalOffset = bytes.count
 						while true {

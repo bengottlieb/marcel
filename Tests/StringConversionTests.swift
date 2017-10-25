@@ -88,9 +88,14 @@ class StringConversionTests: XCTestCase {
 	}
 	
 	func testLineBreakStringConversion() {
-		let starters = ["a=E2=\n=80=99re test =E2=80=9CFair share,=E2=80=9D as in, =E2=80=9Cthe",
+		let starters = [
+			"Subject: =?utf-8?Q?Thread=20Safe=20Networking=20=2F=20Swift=20Weak=20References=20=2F=20A=20Case=20for=20Using=20Storyboards?=",
+			"a=E2=\n=80=99re test =E2=80=9CFair share,=E2=80=9D as in, =E2=80=9Cthe",
 			"Subject: =?utf-8?q?Are_the_US_soldiers=E2=80=99_bank_accounts_frozen_while_they?==?utf-8?q?=E2=80=99re_deployed_in_Iraq=3F_-_Quora?=", "Codable articles are all over the place lately=2C but this one talks about=\r\n handling dates a dateEncodingStrategy that can handle many=2C many format=\r\ns. =F0=9F=8E=89"]
-		let checks = ["a’re test “Fair share,” as in, “the", "Subject: =?utf-8?q?Are_the_US_soldiers’_bank_accounts_frozen_while_they?==?utf-8?q?’re_deployed_in_Iraq?_-_Quora?=", "Codable articles are all over the place lately, but this one talks about handling dates a dateEncodingStrategy that can handle many, many formats. 🎉"]
+		let checks = [
+			"Subject: =?utf-8?Q?Thread Safe Networking / Swift Weak References / A Case for Using Storyboards?=",
+			"a’re test “Fair share,” as in, “the",
+			"Subject: =?utf-8?q?Are_the_US_soldiers’_bank_accounts_frozen_while_they?==?utf-8?q?’re_deployed_in_Iraq?_-_Quora?=", "Codable articles are all over the place lately, but this one talks about handling dates a dateEncodingStrategy that can handle many, many formats. 🎉"]
 		
 		for i in 0..<starters.count {
 			let starter = starters[i]
@@ -98,7 +103,7 @@ class StringConversionTests: XCTestCase {
 			let converted = data.convertFromMangledUTF8()
 		
 			let result = String(data: converted, encoding: .utf8)!
-			XCTAssertEqual(result, checks[i], "Failed to properly convert initial string")
+			XCTAssertEqual(result, checks[i], "Failed to properly convert initial string: \(starter)")
 		}
 	}
 
@@ -127,9 +132,10 @@ Date: Tue, 05 Sep 2017 12:49:37 +0000 (UTC)
 		let data = starter.data(using: .ascii)!
 		let converted = data.convertFromMangledUTF8()
 		
-		let result = String(data: converted, encoding: .utf8)!
-		let decoded = result.decodedFromUTF8Wrapping
-		XCTAssertEqual(decoded, check, "Failed to properly convert initial string")
+		let result = String(data: converted, encoding: .utf8)
+		XCTAssertNotNil(converted, "Failed to convert data to UTF-8 encoded string: \(starter)")
+		let decoded = result?.decodedFromUTF8Wrapping ?? ""
+		XCTAssertEqual(decoded, check, "Failed to properly convert initial string: \(starter)")
 		
 		let components = converted.components()!
 		XCTAssert(components.count == 4, "Wrong number of components in split-string, expected 4, got \(components.count)")
