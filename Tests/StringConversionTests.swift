@@ -48,24 +48,18 @@ class StringConversionTests: XCTestCase {
 		XCTAssertEqual(result, "Are the US soldiers’ bank accounts frozen while they’re deployed in Iraq?", "Failed to properly extract slash-u encoded apostrophe")
 	}
 	
-	func testFullDataConversion() {
-		let url = Bundle(for: StringConversionTests.self).url(forResource: "plain", withExtension: "eml")!
-		let data = try! Data(contentsOf: url)
-		let parser = MIMEMessage(data: data)
-		let subject = parser!.subject
-		let checkSubject = "What do you think about Barack Obama's departing letter to Donald Trump? - Quora"
-		XCTAssertEqual(subject, checkSubject, "Failed to properly extract email title")
-		XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
-	}
-	
-	func testLineBreakDataConversion() {
-		let url = Bundle(for: StringConversionTests.self).url(forResource: "equal-sign-encoding", withExtension: "eml")!
-		let data = try! Data(contentsOf: url)
-		let parser = MIMEMessage(data: data)
-		let subject = parser!.subject
-		let checkSubject = "Concurrency in Swift / State / WTF Auto Layout?"
-		XCTAssertEqual(subject, checkSubject, "Failed to properly extract email title")
-		XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
+	func testHTMLAndSubjectExtraction() {
+		let dir = Bundle(for: StringConversionTests.self).url(forResource: "Test EMLs", withExtension: "")!
+		let contents = try? FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: [])
+		
+		for url in contents ?? [] {
+			let data = try! Data(contentsOf: url)
+			let parser = MIMEMessage(data: data)
+			let subject = parser!.subject
+			let checkSubject = url.deletingPathExtension().lastPathComponent
+			XCTAssertEqual(subject?.replacingOccurrences(of: "/", with: ":"), checkSubject, "Failed to properly extract email title")
+			XCTAssertNotNil(parser!.htmlBody, "Failed to properly extract HTML")
+		}
 	}
 	
 	func testHTMLExtraction() {
@@ -89,11 +83,11 @@ class StringConversionTests: XCTestCase {
 	
 	func testLineBreakStringConversion() {
 		let starters = [
-			"Subject: =?utf-8?Q?Thread=20Safe=20Networking=20=2F=20Swift=20Weak=20References=20=2F=20A=20Case=20for=20Using=20Storyboards?=",
+			"Test=20References=20=2F=20A=20Case=20for=20Using=20Storyboards?=",
 			"a=E2=\n=80=99re test =E2=80=9CFair share,=E2=80=9D as in, =E2=80=9Cthe",
 			"Subject: =?utf-8?q?Are_the_US_soldiers=E2=80=99_bank_accounts_frozen_while_they?==?utf-8?q?=E2=80=99re_deployed_in_Iraq=3F_-_Quora?=", "Codable articles are all over the place lately=2C but this one talks about=\r\n handling dates a dateEncodingStrategy that can handle many=2C many format=\r\ns. =F0=9F=8E=89"]
 		let checks = [
-			"Subject: =?utf-8?Q?Thread Safe Networking / Swift Weak References / A Case for Using Storyboards?=",
+			"Test References / A Case for Using Storyboards?=",
 			"a’re test “Fair share,” as in, “the",
 			"Subject: =?utf-8?q?Are_the_US_soldiers’_bank_accounts_frozen_while_they?==?utf-8?q?’re_deployed_in_Iraq?_-_Quora?=", "Codable articles are all over the place lately, but this one talks about handling dates a dateEncodingStrategy that can handle many, many formats. 🎉"]
 		

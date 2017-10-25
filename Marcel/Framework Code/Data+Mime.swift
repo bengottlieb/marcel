@@ -275,8 +275,10 @@ extension Data {
 			if we look at three bytes, and ignore any runs longer than 2, then we miss stuff like References=20=2F=20A=20Case, which should be "References / A Case", but the =20A is throwing it for a loop
 
 			if we look at only two bytes, then we catch that, but we miss URL parameters such as &ct=1507640404515657
+		
+			we're going to look at the next 8 characters. If they're all digits, we'll assume this is some sort of parameter and not convert it.
 		*/
-		return self.convertCheckingByteRuns(maxLength: 2)
+		return self.convertCheckingByteRuns(maxLength: 8)
 	}
 	
 	func convertCheckingByteRuns(maxLength: Int) -> Data {
@@ -331,9 +333,9 @@ extension Data {
 						output[count - 1] = equals
 						i += 2
 						continue
-					} else if let bytes = ptr.nextHexCharacters(from: i, limitedTo: maxLength, length: length), bytes.count == 2, let escaped = UInt8(bytes: bytes) {
+					} else if let bytes = ptr.nextHexCharacters(from: i, limitedTo: maxLength, length: length), bytes.count >= 2, bytes.count < 6, let escaped = UInt8(bytes: Array(bytes[0..<2])) {
 						var translated = [escaped]
-						var additionalOffset = bytes.count
+						var additionalOffset = 2
 						while true {
 							if ptr[i + additionalOffset] != sentinel { break }
 							if ptr[i + additionalOffset + 1] == newline {
@@ -343,7 +345,7 @@ extension Data {
 							guard let nextBytes = ptr.nextHexCharacters(from: i + additionalOffset + 1, limitedTo: 2, length: length), nextBytes.count == 2, let escaped = UInt8(bytes: nextBytes) else { break }
 							
 							translated.append(escaped)
-							additionalOffset += bytes.count + 1
+							additionalOffset += nextBytes.count + 1
 						}
 
 						count -= 1

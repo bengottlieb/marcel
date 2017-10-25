@@ -34,6 +34,7 @@ class MimeDetailsWindowController: NSWindowController {
 		
 		self.webView.frameLoadDelegate = self
 		self.window?.title = self.parser.subject ?? "Untitled"
+		print("Loading email: \"\(self.window!.title)\"")
 		
 		let html = self.parser.htmlBody ?? "<html><body>NONE FOUND</body></html>"
 		self.webView.mainFrame.loadHTMLString(html, baseURL: nil)
