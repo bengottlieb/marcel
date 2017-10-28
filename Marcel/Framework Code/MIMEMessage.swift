@@ -26,6 +26,10 @@ public class MIMEMessage {
 		return self.mainPart[field]
 	}
 	
+	public var identifier: String? {
+		return self[.messageID] ?? self[.dkimSignature]
+	}
+	
 	enum BoundaryType: String { case alternative, related }
 	
 	public init?(data: Data) {

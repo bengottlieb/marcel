@@ -22,6 +22,7 @@ extension MIMEMessage.Part {
 			case listUnsubscribe = "list-unsubscribe"
 			case contentType = "content-type"
 			case contentTransferEncoding = "content-transfer-encoding"
+			case dkimSignature = "DKIM-Signature"
 		}
 
 		let raw: String
