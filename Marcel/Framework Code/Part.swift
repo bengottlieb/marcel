@@ -34,10 +34,11 @@ extension MIMEMessage {
 		public var contentType: String? { return self.headers[.contentType]?.body }
 		public var contentEncoding: ContentEncoding? { return ContentEncoding(rawValue: self.headers[.contentTransferEncoding]?.body ?? "") }
 		func part(ofType type: String) -> Part? {
-			if self.contentType?.contains(type) == true { return self }
+			let lower = type.lowercased()
+			if self.contentType?.lowercased().contains(lower) == true { return self }
 			
 			for part in self.subParts {
-				if let sub = part.part(ofType: type) { return sub }
+				if let sub = part.part(ofType: lower) { return sub }
 			}
 			return nil
 		}
