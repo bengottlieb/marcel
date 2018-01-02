@@ -41,14 +41,15 @@ extension MIMEMessage.Part {
 		}
 		
 		var keyValues: [String: String] {
+			let trimThese = CharacterSet(charactersIn: "\"").union(.whitespacesAndNewlines)
 			let components = self.body.components(separatedBy: ",")
 			var results: [String: String] = [:]
 			
 			for component in components {
 				let pieces = component.components(separatedBy: "=")
 				guard pieces.count >= 2 else { continue }
-				let key = pieces[0].trimmingCharacters(in: .quotes).components(separatedBy: .whitespaces).last!
-				results[key] = Array(pieces[1...]).joined(separator: "=").trimmingCharacters(in: .quotes)
+				let key = pieces[0].trimmingCharacters(in: trimThese).components(separatedBy: .whitespaces).last!
+				results[key] = Array(pieces[1...]).joined(separator: "=").trimmingCharacters(in: trimThese)
 			}
 			return results
 		}
