@@ -42,7 +42,9 @@ extension MIMEMessage.Part {
 		
 		var keyValues: [String: String] {
 			let trimThese = CharacterSet(charactersIn: "\"").union(.whitespacesAndNewlines)
-			let components = self.body.components(separatedBy: ",")
+			let commaComponents = self.body.components(separatedBy: ",")
+			let seimcolonComponents = self.body.components(separatedBy: ";")
+			let components = seimcolonComponents.count > 1 ? seimcolonComponents : commaComponents
 			var results: [String: String] = [:]
 			
 			for component in components {
