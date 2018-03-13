@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class MIMEMessage {
+public class MIMEMessage: Equatable {
 	public var raw: Data
 	public var subject: String? { return self[.subject] }
 	
@@ -56,5 +56,9 @@ public class MIMEMessage {
 			return true
 		}
 		return false
+	}
+	
+	public static func ==(lhs: MIMEMessage, rhs: MIMEMessage) -> Bool {
+		return lhs.identifier == rhs.identifier
 	}
 }
