@@ -27,7 +27,7 @@ extension String {
 				done = true
 			}
 			let innerRange = range.upperBound..<upperBound
-			let innerChunk = String(result[innerRange]) ?? ""
+			let innerChunk = String(result[innerRange])
 			let convertedFiller = innerChunk.convertedFromEmailHeaderField
 			result = result.replacingCharacters(in: range.lowerBound..<endRange.upperBound, with: convertedFiller)
 			lastUpperBound = result.distance(from: result.startIndex, to: range.lowerBound) + convertedFiller.count
@@ -40,7 +40,7 @@ extension String {
 				done = true
 			}
 			let innerRange = range.upperBound..<upperBound
-			let innerChunk = String(result[innerRange]) ?? ""
+			let innerChunk = String(result[innerRange])
 			guard let base64Data = Data(base64Encoded: innerChunk), let convertedFiller = String(data: base64Data, encoding: .utf8) else { continue }
 			result = result.replacingCharacters(in: range.lowerBound..<endRange.upperBound, with: convertedFiller)
 			lastUpperBound = result.distance(from: result.startIndex, to: range.lowerBound) + convertedFiller.count
