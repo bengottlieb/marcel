@@ -21,17 +21,23 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		B513FD9E22D04512000935E3 /* Data+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9822D04512000935E3 /* Data+Mime.swift */; };
+		B513FD9F22D04512000935E3 /* Data+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9822D04512000935E3 /* Data+Mime.swift */; };
+		B513FDA022D04512000935E3 /* UInt8+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9922D04512000935E3 /* UInt8+Mime.swift */; };
+		B513FDA122D04512000935E3 /* UInt8+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9922D04512000935E3 /* UInt8+Mime.swift */; };
+		B513FDA222D04512000935E3 /* MIMEMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9A22D04512000935E3 /* MIMEMessage.swift */; };
+		B513FDA322D04512000935E3 /* MIMEMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9A22D04512000935E3 /* MIMEMessage.swift */; };
+		B513FDA422D04512000935E3 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9B22D04512000935E3 /* Header.swift */; };
+		B513FDA522D04512000935E3 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9B22D04512000935E3 /* Header.swift */; };
+		B513FDA622D04512000935E3 /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9C22D04512000935E3 /* Part.swift */; };
+		B513FDA722D04512000935E3 /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9C22D04512000935E3 /* Part.swift */; };
+		B513FDA822D04512000935E3 /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9D22D04512000935E3 /* String+Mime.swift */; };
+		B513FDA922D04512000935E3 /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513FD9D22D04512000935E3 /* String+Mime.swift */; };
 		B53173C11F5F4CCE00F9C5AB /* MarcelUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53173C01F5F4CCE00F9C5AB /* MarcelUnitTests.swift */; };
 		B53173C31F5F4CCE00F9C5AB /* Marcel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Marcel.framework */; };
 		B53173C91F5F4CDA00F9C5AB /* StringConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */; };
 		B55523531F5963A7005D026B /* Marcel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Marcel.framework */; };
 		B55523551F5963C1005D026B /* Marcel.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = B504E6AF1A898110001B414B /* Marcel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B55523571F596422005D026B /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55523561F596422005D026B /* Part.swift */; };
-		B55523581F596422005D026B /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55523561F596422005D026B /* Part.swift */; };
-		B555235A1F596576005D026B /* UInt8+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55523591F596576005D026B /* UInt8+Mime.swift */; };
-		B555235B1F596576005D026B /* UInt8+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55523591F596576005D026B /* UInt8+Mime.swift */; };
-		B55523601F596705005D026B /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555235F1F596705005D026B /* Header.swift */; };
-		B55523611F596705005D026B /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555235F1F596705005D026B /* Header.swift */; };
 		B57A1C3B1F8296B300AFA3DE /* second-encoding.eml in Resources */ = {isa = PBXBuildFile; fileRef = B57A1C3A1F8296AF00AFA3DE /* second-encoding.eml */; };
 		B583A78A1CB4951C00AF73BA /* Marcel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B504E6461A8968DC001B414B /* Marcel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B58D64791A898F89005A0002 /* Marcel.h in Headers */ = {isa = PBXBuildFile; fileRef = B58D64681A898F81005A0002 /* Marcel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,21 +47,15 @@
 		B58D64931A899094005A0002 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58D648D1A899094005A0002 /* Images.xcassets */; };
 		B58D64951A899094005A0002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D648F1A899094005A0002 /* ViewController.swift */; };
 		B58D64961A899285005A0002 /* Marcel.h in Headers */ = {isa = PBXBuildFile; fileRef = B58D646B1A898F81005A0002 /* Marcel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B593111C1F58A0CD0056D353 /* MIMEMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593111B1F58A0CD0056D353 /* MIMEMessage.swift */; };
-		B593111D1F58A0CD0056D353 /* MIMEMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593111B1F58A0CD0056D353 /* MIMEMessage.swift */; };
 		B59311251F58A3EB0056D353 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59311241F58A3EB0056D353 /* AppDelegate.swift */; };
 		B59311271F58A3EB0056D353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B59311261F58A3EB0056D353 /* Assets.xcassets */; };
 		B593112A1F58A3EB0056D353 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59311281F58A3EB0056D353 /* MainMenu.xib */; };
 		B59311321F58A5CB0056D353 /* MimeDetailsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59311301F58A5CB0056D353 /* MimeDetailsWindowController.swift */; };
 		B59311331F58A5CB0056D353 /* MimeDetailsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59311311F58A5CB0056D353 /* MimeDetailsWindowController.xib */; };
-		B593113A1F58B92E0056D353 /* Data+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59311391F58B92E0056D353 /* Data+Mime.swift */; };
-		B593113B1F58B92E0056D353 /* Data+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59311391F58B92E0056D353 /* Data+Mime.swift */; };
 		B5A482511AE5DCCC001636BE /* Marcel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B504E6461A8968DC001B414B /* Marcel.framework */; };
 		B5A482591AE5DE6A001636BE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A482581AE5DE6A001636BE /* CoreAudio.framework */; };
 		B5BAA51A1F87FC3D00637C51 /* failed-html.eml in Resources */ = {isa = PBXBuildFile; fileRef = B5BAA5191F87FC3100637C51 /* failed-html.eml */; };
 		B5BFC2C51FA0C6C500B2C484 /* Test EMLs in Resources */ = {isa = PBXBuildFile; fileRef = B5BFC2C41FA0C6C500B2C484 /* Test EMLs */; };
-		B5E0D43A1F5DA00300E1077C /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E0D4391F5DA00300E1077C /* String+Mime.swift */; };
-		B5E0D43B1F5DA00300E1077C /* String+Mime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E0D4391F5DA00300E1077C /* String+Mime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,13 +123,17 @@
 		B504E69B1A896E82001B414B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B504E69C1A896E82001B414B /* Marcel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marcel_Tests.swift; sourceTree = "<group>"; };
 		B504E6AF1A898110001B414B /* Marcel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marcel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B513FD9822D04512000935E3 /* Data+Mime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Mime.swift"; sourceTree = "<group>"; };
+		B513FD9922D04512000935E3 /* UInt8+Mime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UInt8+Mime.swift"; sourceTree = "<group>"; };
+		B513FD9A22D04512000935E3 /* MIMEMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIMEMessage.swift; sourceTree = "<group>"; };
+		B513FD9B22D04512000935E3 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		B513FD9C22D04512000935E3 /* Part.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Part.swift; sourceTree = "<group>"; };
+		B513FD9D22D04512000935E3 /* String+Mime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Mime.swift"; sourceTree = "<group>"; };
+		B513FDAA22D0451D000935E3 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringConversionTests.swift; path = Tests/StringConversionTests.swift; sourceTree = SOURCE_ROOT; };
 		B53173BE1F5F4CCE00F9C5AB /* MarcelUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarcelUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53173C01F5F4CCE00F9C5AB /* MarcelUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarcelUnitTests.swift; sourceTree = "<group>"; };
 		B53173C21F5F4CCE00F9C5AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B55523561F596422005D026B /* Part.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part.swift; sourceTree = "<group>"; };
-		B55523591F596576005D026B /* UInt8+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Mime.swift"; sourceTree = "<group>"; };
-		B555235F1F596705005D026B /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		B57A1C3A1F8296AF00AFA3DE /* second-encoding.eml */ = {isa = PBXFileReference; lastKnownFileType = text; name = "second-encoding.eml"; path = "MarcelTestMac/second-encoding.eml"; sourceTree = "<group>"; };
 		B58D64671A898F81005A0002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58D64681A898F81005A0002 /* Marcel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Marcel.h; sourceTree = "<group>"; };
@@ -141,7 +145,6 @@
 		B58D648D1A899094005A0002 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B58D648E1A899094005A0002 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58D648F1A899094005A0002 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B593111B1F58A0CD0056D353 /* MIMEMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIMEMessage.swift; sourceTree = "<group>"; };
 		B59311221F58A3EB0056D353 /* MarcelTestMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarcelTestMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59311241F58A3EB0056D353 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B59311261F58A3EB0056D353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,11 +153,9 @@
 		B593112C1F58A3EB0056D353 /* MarcelTestMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MarcelTestMac.entitlements; sourceTree = "<group>"; };
 		B59311301F58A5CB0056D353 /* MimeDetailsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeDetailsWindowController.swift; sourceTree = "<group>"; };
 		B59311311F58A5CB0056D353 /* MimeDetailsWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MimeDetailsWindowController.xib; sourceTree = "<group>"; };
-		B59311391F58B92E0056D353 /* Data+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Mime.swift"; sourceTree = "<group>"; };
 		B5A482581AE5DE6A001636BE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		B5BAA5191F87FC3100637C51 /* failed-html.eml */ = {isa = PBXFileReference; lastKnownFileType = text; name = "failed-html.eml"; path = "MarcelTestMac/failed-html.eml"; sourceTree = "<group>"; };
 		B5BFC2C41FA0C6C500B2C484 /* Test EMLs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Test EMLs"; sourceTree = "<group>"; };
-		B5E0D4391F5DA00300E1077C /* String+Mime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Mime.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,8 +204,9 @@
 		B504E60A1A89230F001B414B = {
 			isa = PBXGroup;
 			children = (
+				B513FDAA22D0451D000935E3 /* Package.swift */,
 				B504E66A1A896980001B414B /* BuildFramework.sh */,
-				B58D64741A898F81005A0002 /* Framework Code */,
+				B513FD9722D04512000935E3 /* Source */,
 				B58D64661A898F81005A0002 /* Marcel_Mac */,
 				B58D64691A898F81005A0002 /* Marcel_iOS */,
 				B504E6991A896E82001B414B /* Marcel Tests */,
@@ -249,6 +251,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B513FD9722D04512000935E3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B513FD9822D04512000935E3 /* Data+Mime.swift */,
+				B513FD9922D04512000935E3 /* UInt8+Mime.swift */,
+				B513FD9A22D04512000935E3 /* MIMEMessage.swift */,
+				B513FD9B22D04512000935E3 /* Header.swift */,
+				B513FD9C22D04512000935E3 /* Part.swift */,
+				B513FD9D22D04512000935E3 /* String+Mime.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		B53173BF1F5F4CCE00F9C5AB /* MarcelUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,20 +291,6 @@
 			);
 			name = Marcel_iOS;
 			path = Marcel/iOS;
-			sourceTree = "<group>";
-		};
-		B58D64741A898F81005A0002 /* Framework Code */ = {
-			isa = PBXGroup;
-			children = (
-				B593111B1F58A0CD0056D353 /* MIMEMessage.swift */,
-				B55523561F596422005D026B /* Part.swift */,
-				B555235F1F596705005D026B /* Header.swift */,
-				B55523591F596576005D026B /* UInt8+Mime.swift */,
-				B59311391F58B92E0056D353 /* Data+Mime.swift */,
-				B5E0D4391F5DA00300E1077C /* String+Mime.swift */,
-			);
-			name = "Framework Code";
-			path = "Marcel/Framework Code";
 			sourceTree = "<group>";
 		};
 		B58D64871A899094005A0002 /* TestHost */ = {
@@ -586,12 +587,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B55523571F596422005D026B /* Part.swift in Sources */,
-				B55523601F596705005D026B /* Header.swift in Sources */,
-				B5E0D43A1F5DA00300E1077C /* String+Mime.swift in Sources */,
-				B593111C1F58A0CD0056D353 /* MIMEMessage.swift in Sources */,
-				B555235A1F596576005D026B /* UInt8+Mime.swift in Sources */,
-				B593113A1F58B92E0056D353 /* Data+Mime.swift in Sources */,
+				B513FDA422D04512000935E3 /* Header.swift in Sources */,
+				B513FDA222D04512000935E3 /* MIMEMessage.swift in Sources */,
+				B513FDA822D04512000935E3 /* String+Mime.swift in Sources */,
+				B513FDA022D04512000935E3 /* UInt8+Mime.swift in Sources */,
+				B513FDA622D04512000935E3 /* Part.swift in Sources */,
+				B513FD9E22D04512000935E3 /* Data+Mime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,12 +600,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B55523581F596422005D026B /* Part.swift in Sources */,
-				B55523611F596705005D026B /* Header.swift in Sources */,
-				B5E0D43B1F5DA00300E1077C /* String+Mime.swift in Sources */,
-				B593111D1F58A0CD0056D353 /* MIMEMessage.swift in Sources */,
-				B555235B1F596576005D026B /* UInt8+Mime.swift in Sources */,
-				B593113B1F58B92E0056D353 /* Data+Mime.swift in Sources */,
+				B513FDA522D04512000935E3 /* Header.swift in Sources */,
+				B513FDA322D04512000935E3 /* MIMEMessage.swift in Sources */,
+				B513FDA922D04512000935E3 /* String+Mime.swift in Sources */,
+				B513FDA122D04512000935E3 /* UInt8+Mime.swift in Sources */,
+				B513FDA722D04512000935E3 /* Part.swift in Sources */,
+				B513FD9F22D04512000935E3 /* Data+Mime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,6 +952,7 @@
 		B53173C71F5F4CCE00F9C5AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -976,6 +978,7 @@
 		B53173C81F5F4CCE00F9C5AB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1001,6 +1004,7 @@
 		B593112E1F58A3EB0056D353 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1027,6 +1031,7 @@
 		B593112F1F58A3EB0056D353 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
