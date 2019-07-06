@@ -254,6 +254,14 @@
 		B513FD9722D04512000935E3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B513FDAB22D04792000935E3 /* Marcel */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		B513FDAB22D04792000935E3 /* Marcel */ = {
+			isa = PBXGroup;
+			children = (
 				B513FD9822D04512000935E3 /* Data+Mime.swift */,
 				B513FD9922D04512000935E3 /* UInt8+Mime.swift */,
 				B513FD9A22D04512000935E3 /* MIMEMessage.swift */,
@@ -261,7 +269,7 @@
 				B513FD9C22D04512000935E3 /* Part.swift */,
 				B513FD9D22D04512000935E3 /* String+Mime.swift */,
 			);
-			path = Source;
+			path = Marcel;
 			sourceTree = "<group>";
 		};
 		B53173BF1F5F4CCE00F9C5AB /* MarcelUnitTests */ = {
