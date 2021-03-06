@@ -56,6 +56,9 @@
 		B5A482591AE5DE6A001636BE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A482581AE5DE6A001636BE /* CoreAudio.framework */; };
 		B5BAA51A1F87FC3D00637C51 /* failed-html.eml in Resources */ = {isa = PBXBuildFile; fileRef = B5BAA5191F87FC3100637C51 /* failed-html.eml */; };
 		B5BFC2C51FA0C6C500B2C484 /* Test EMLs in Resources */ = {isa = PBXBuildFile; fileRef = B5BFC2C41FA0C6C500B2C484 /* Test EMLs */; };
+		B5D393EB25F3D201002005EA /* MIMEBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D393EA25F3D201002005EA /* MIMEBundle.swift */; };
+		B5D393EC25F3D201002005EA /* MIMEBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D393EA25F3D201002005EA /* MIMEBundle.swift */; };
+		B5D393F125F3E3FA002005EA /* MIMEBundleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D393F025F3E3FA002005EA /* MIMEBundleTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +159,8 @@
 		B5A482581AE5DE6A001636BE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		B5BAA5191F87FC3100637C51 /* failed-html.eml */ = {isa = PBXFileReference; lastKnownFileType = text; name = "failed-html.eml"; path = "MarcelTestMac/failed-html.eml"; sourceTree = "<group>"; };
 		B5BFC2C41FA0C6C500B2C484 /* Test EMLs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Test EMLs"; sourceTree = "<group>"; };
+		B5D393EA25F3D201002005EA /* MIMEBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIMEBundle.swift; sourceTree = "<group>"; };
+		B5D393F025F3E3FA002005EA /* MIMEBundleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIMEBundleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +241,7 @@
 				B59311231F58A3EB0056D353 /* MarcelTestMac */,
 				B58D64871A899094005A0002 /* TestHost */,
 				B504E69C1A896E82001B414B /* Marcel_Tests.swift */,
+				B5D393F025F3E3FA002005EA /* MIMEBundleTests.swift */,
 				B53173B91F5F4C8700F9C5AB /* StringConversionTests.swift */,
 				B504E69A1A896E82001B414B /* Supporting Files */,
 			);
@@ -265,6 +271,7 @@
 				B513FD9822D04512000935E3 /* Data+Mime.swift */,
 				B513FD9922D04512000935E3 /* UInt8+Mime.swift */,
 				B513FD9A22D04512000935E3 /* MIMEMessage.swift */,
+				B5D393EA25F3D201002005EA /* MIMEBundle.swift */,
 				B513FD9B22D04512000935E3 /* Header.swift */,
 				B513FD9C22D04512000935E3 /* Part.swift */,
 				B513FD9D22D04512000935E3 /* String+Mime.swift */,
@@ -596,6 +603,7 @@
 			files = (
 				B513FDA422D04512000935E3 /* Header.swift in Sources */,
 				B513FDA222D04512000935E3 /* MIMEMessage.swift in Sources */,
+				B5D393EB25F3D201002005EA /* MIMEBundle.swift in Sources */,
 				B513FDA822D04512000935E3 /* String+Mime.swift in Sources */,
 				B513FDA022D04512000935E3 /* UInt8+Mime.swift in Sources */,
 				B513FDA622D04512000935E3 /* Part.swift in Sources */,
@@ -609,6 +617,7 @@
 			files = (
 				B513FDA522D04512000935E3 /* Header.swift in Sources */,
 				B513FDA322D04512000935E3 /* MIMEMessage.swift in Sources */,
+				B5D393EC25F3D201002005EA /* MIMEBundle.swift in Sources */,
 				B513FDA922D04512000935E3 /* String+Mime.swift in Sources */,
 				B513FDA122D04512000935E3 /* UInt8+Mime.swift in Sources */,
 				B513FDA722D04512000935E3 /* Part.swift in Sources */,
@@ -621,6 +630,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B53173C91F5F4CDA00F9C5AB /* StringConversionTests.swift in Sources */,
+				B5D393F125F3E3FA002005EA /* MIMEBundleTests.swift in Sources */,
 				B53173C11F5F4CCE00F9C5AB /* MarcelUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
