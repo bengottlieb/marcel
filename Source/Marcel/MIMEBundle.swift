@@ -73,10 +73,10 @@ extension MIMEBundle {
 
 extension MIMEBundle {
     static var randomBoundary: String {
-        var base = "Boundary-"
+        var base = "------------------------"
         let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         
-        for _ in 0...30 {
+        for _ in 0...16 {
             base += String(letters.randomElement()!)
         }
         
