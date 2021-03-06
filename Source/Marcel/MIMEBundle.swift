@@ -15,7 +15,7 @@ extension Data: MIMEEncodable {}
 
 public class MIMEBundle {
     var content: [Chunk]
-    let boundary: String
+    public let boundary: String
     
     public init(content: [Chunk], boundary: String? = nil) {
         self.content = content
