@@ -332,7 +332,7 @@ extension Data {
 					lastWasSentinel = false
 					if pointingToNewline, i < (length - 1), i > 1, raw[byte: i - 2] != sentinel {					//newline. Might be a hard wrap
 						count -= 1
-						while (raw[byte: i] == newline || raw[byte: i] == cr), i < length {
+						while i < length, (raw[byte: i] == newline || raw[byte: i] == cr) {
 							i += 1
 						}
 						continue
